@@ -1,0 +1,25 @@
+/* Global Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root */
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    background: #111;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Remove browser defaults */
+
+body {
+    overflow-x: hidden;
+}

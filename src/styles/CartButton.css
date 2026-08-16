@@ -1,0 +1,35 @@
+.cart-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #D4AF37;
+    transition: .3s;
+}
+
+.cart-button:hover {
+    color: #8A2BE2;
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+
+    background: #8A2BE2;
+    color: white;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: .75rem;
+    font-weight: bold;
+}

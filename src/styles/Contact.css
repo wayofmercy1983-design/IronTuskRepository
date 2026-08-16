@@ -1,0 +1,275 @@
+/* ===================================
+   CONTACT PAGE
+=================================== */
+
+.contact-page {
+  background: #090909;
+  color: #f5f5f5;
+  min-height: 100vh;
+  padding: 140px 8% 80px;
+}
+
+/* ===================================
+   HERO
+=================================== */
+
+.contact-hero {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.contact-logo {
+  width: 220px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 18px rgba(138, 43, 226, 0.45));
+  transition: all 0.3s ease;
+}
+
+.contact-logo:hover {
+  transform: scale(1.05);
+}
+
+.contact-hero h1 {
+  color: #d4af37;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.contact-hero p {
+  max-width: 750px;
+  margin: auto;
+  color: #cccccc;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* ===================================
+   CARDS
+=================================== */
+
+.contact-card {
+  max-width: 1000px;
+  margin: 0 auto 35px;
+  padding: 35px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(138,43,226,.35);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  transition: all .3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  border-color: #8a2be2;
+  box-shadow: 0 0 30px rgba(138,43,226,.30);
+}
+
+.contact-card h2 {
+  color: #d4af37;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.contact-card p {
+  color: #d0d0d0;
+  line-height: 1.8;
+}
+
+/* ===================================
+   LEADERSHIP
+=================================== */
+
+.team-member {
+  padding: 25px 0;
+}
+
+.team-member:not(:last-child) {
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.team-member h3 {
+  color: white;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.team-title {
+  color: #8a2be2;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.team-description {
+  color: #cfcfcf;
+  line-height: 1.7;
+}
+
+/* ===================================
+   CONTACT
+=================================== */
+
+.contact-section {
+  margin: 30px 0;
+}
+
+.contact-section h3 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.contact-section p {
+  margin-bottom: 18px;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* ===================================
+   BUTTONS
+=================================== */
+
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  background: #8a2be2;
+  color: white;
+  text-decoration: none;
+
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: .95rem;
+
+  transition: all .3s ease;
+}
+
+.contact-button:hover {
+  background: #d4af37;
+  color: #111111;
+  transform: translateY(-3px);
+}
+
+/* ===================================
+   DIVIDER
+=================================== */
+
+.contact-card hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin: 35px 0;
+}
+
+/* ===================================
+   BUSINESS LIST
+=================================== */
+
+.business-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.business-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  color: #eeeeee;
+}
+
+.business-list li:last-child {
+  border-bottom: none;
+}
+
+.business-list li::before {
+  content: "✓";
+  color: #8a2be2;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+
+.contact-footer {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.contact-footer h2 {
+  color: #d4af37;
+  margin-bottom: 20px;
+}
+
+.contact-footer p {
+  max-width: 700px;
+  margin: auto;
+  color: #cfcfcf;
+  line-height: 1.8;
+}
+
+/* ===================================
+   SCROLL ANIMATION
+=================================== */
+
+.contact-card,
+.contact-footer,
+.contact-hero {
+  animation: fadeUp .7s ease;
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media (max-width: 900px) {
+
+  .contact-page {
+    padding: 120px 25px 60px;
+  }
+
+  .contact-logo {
+    width: 170px;
+  }
+
+  .contact-hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .contact-card {
+    padding: 25px;
+  }
+
+  .button-row {
+    flex-direction: column;
+  }
+
+  .contact-button {
+    width: 100%;
+  }
+
+}

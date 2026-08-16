@@ -1,0 +1,272 @@
+.artist-profile {
+  background: #121212;
+  color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.artist-hero {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+}
+
+.artist-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================
+   Hero Information
+========================================== */
+
+.artist-info {
+  position: absolute;
+  left: 3rem;
+  bottom: 3rem;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.artist-info h1 {
+  margin: 0;
+  font-size: 3rem;
+  color: #d4af37;
+}
+
+.artist-genre {
+  display: inline-block;
+  width: fit-content;
+
+  background: #8a2be2;
+  color: #fff;
+
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+
+  font-weight: 600;
+}
+
+.artist-location {
+  margin: 0;
+  color: #ddd;
+  font-size: 1.05rem;
+}
+
+/* ==========================================
+   Main Content
+========================================== */
+
+.artist-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.artist-biography,
+.artist-members,
+.artist-releases,
+.artist-facts,
+.artist-socials {
+  margin-bottom: 3rem;
+}
+
+.artist-biography h2,
+.artist-members h2,
+.artist-releases h2,
+.artist-facts h2,
+.artist-socials h2 {
+  color: #d4af37;
+  border-bottom: 2px solid #8a2be2;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.artist-biography p {
+  line-height: 1.8;
+  color: #d5d5d5;
+}
+
+/* ==========================================
+   Band Members / Fun Facts
+========================================== */
+
+.artist-members ul,
+.artist-facts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.artist-members li,
+.artist-facts li {
+  background: #1b1b1b;
+  border-left: 4px solid #8a2be2;
+  border-radius: 8px;
+
+  margin-bottom: 0.8rem;
+  padding: 0.9rem 1rem;
+
+  color: #ddd;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   Release Cards
+========================================== */
+
+.artist-release-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.artist-release-card {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 2rem;
+
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 12px;
+
+  padding: 1.5rem;
+  align-items: center;
+}
+
+.artist-release-cover {
+  width: 100%;
+  max-width: 210px;
+  border-radius: 10px;
+  display: block;
+}
+
+.artist-release-details h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+
+  color: white;
+  font-size: 1.8rem;
+}
+
+.release-meta {
+  color: #d4af37;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.artist-release-details p {
+  color: #d5d5d5;
+  line-height: 1.7;
+}
+
+.release-button {
+  display: inline-block;
+
+  margin-top: 1.25rem;
+
+  background: #8a2be2;
+  color: white;
+
+  padding: 0.75rem 1.4rem;
+
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.release-button:hover {
+  background: #a855f7;
+}
+
+/* ==========================================
+   Social Links
+========================================== */
+
+.artist-socials ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.artist-socials li {
+  margin: 0;
+}
+
+.artist-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #8a2be2;
+  color: white;
+
+  padding: 0.75rem 1.2rem;
+
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+.artist-socials a:hover {
+  background: #a855f7;
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   Not Found
+========================================== */
+
+.not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media (max-width: 768px) {
+
+  .artist-hero {
+    height: 300px;
+  }
+
+  .artist-info {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .artist-info h1 {
+    font-size: 2rem;
+  }
+
+  .artist-release-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .artist-release-cover {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .artist-socials ul {
+    justify-content: center;
+  }
+
+}

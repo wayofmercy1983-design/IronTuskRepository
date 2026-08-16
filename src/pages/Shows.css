@@ -1,0 +1,98 @@
+/* =========================================
+   IRON TUSK ONLINE - SHOWS
+   ========================================= */
+
+.shows-page {
+  min-height: calc(100vh - 100px);
+  background: #080808;
+  color: #ffffff;
+  padding: 90px 30px 100px;
+  box-sizing: border-box;
+}
+
+.shows-under-construction {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.shows-under-construction h1 {
+  margin: 0 0 50px;
+  color: #d4af37;
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.construction-message {
+  background: #111111;
+  border: 1px solid #303030;
+  border-top: 3px solid #8a2be2;
+  border-radius: 14px;
+  padding: 55px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.construction-message h2 {
+  margin: 0 0 25px;
+  color: #d4af37;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.construction-message p {
+  max-width: 700px;
+  margin: 15px auto;
+  color: #dddddd;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+  .shows-page {
+    padding: 70px 25px 80px;
+  }
+
+  .shows-under-construction h1 {
+    font-size: 44px;
+  }
+
+  .construction-message {
+    padding: 45px 30px;
+  }
+}
+
+/* =========================================
+   PHONE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .shows-page {
+    padding: 55px 15px 70px;
+  }
+
+  .shows-under-construction h1 {
+    font-size: 34px;
+    letter-spacing: 2px;
+    margin-bottom: 35px;
+  }
+
+  .construction-message {
+    padding: 35px 20px;
+  }
+
+  .construction-message h2 {
+    font-size: 25px;
+  }
+
+  .construction-message p {
+    font-size: 16px;
+  }
+}

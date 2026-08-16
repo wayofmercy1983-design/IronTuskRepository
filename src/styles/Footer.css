@@ -1,0 +1,121 @@
+.footer {
+    background: #080808;
+    border-top: 2px solid #D4AF37;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.footer-logo img {
+    width: 180px;
+    height: auto;
+    display: block;
+}
+
+
+
+.footer h3 {
+    font-family: "Bebas Neue", sans-serif;
+    color: #D4AF37;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+
+.footer p {
+    font-family: "Montserrat", sans-serif;
+    color: #8A2BE2;
+    margin: 15px 0 30px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    color: #D4AF37;
+}
+
+.footer small {
+    color: #777;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Space below the framed logo */
+.footer .logo-card {
+    margin-bottom: 20px;
+}
+
+.footer .logo-card {
+    display: inline-block;
+    padding: 0;
+    margin: 0 auto 25px;
+
+    background: #1c1c1c;
+    border: 1px solid #2b2b2b;
+    border-radius: 16px;
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+}
+.footer .logo-card:hover {
+    transform: translateY(-6px);
+    border-color: #8A2BE2;
+    box-shadow: 0 0 18px rgba(138, 43, 226, 0.35);
+}
+
+.footer .logo-card img {
+    width: 180px;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.footer .logo-card:hover img {
+    transform: scale(1.03);
+}
+/* =========================
+   Footer Mobile
+========================= */
+
+@media (max-width: 700px) {
+
+    .footer{
+        padding: 50px 20px;
+    }
+
+    .footer h3{
+        font-size: 1.75rem;
+    }
+
+    .footer p{
+        font-size: .95rem;
+        margin: 15px 0 25px;
+    }
+
+    .footer-links{
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer .logo-card img{
+        width: 140px;
+    }
+
+}

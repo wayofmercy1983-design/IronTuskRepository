@@ -1,0 +1,136 @@
+.artists-page{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    padding:140px 40px 80px;
+
+}
+
+.artists-hero{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.artists-hero h1{
+
+    font-size:3rem;
+
+    color:#D4AF37;
+
+    margin-bottom:20px;
+
+    letter-spacing:2px;
+
+}
+
+.artists-hero p{
+
+    color:#cfcfcf;
+
+    font-size:1.1rem;
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+}
+
+.artist-search{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:25px;
+
+}
+
+.artist-search input{
+
+    width:100%;
+    max-width:500px;
+
+    padding:16px 22px;
+
+    border-radius:50px;
+
+    border:1px solid #8A2BE2;
+
+    background:#181818;
+
+    color:white;
+
+    font-size:1rem;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.artist-search input:focus{
+
+    box-shadow:0 0 20px rgba(138,43,226,.5);
+
+}
+
+.artist-count{
+
+    color:#999;
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+    font-size:.95rem;
+
+}
+
+.artists-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+
+    gap:35px;
+
+}
+
+@media(max-width:900px){
+
+.artists-page{
+
+padding:120px 20px 60px;
+
+}
+
+.artists-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.artists-hero h1{
+
+font-size:2.4rem;
+
+}
+
+}
+
+@media(max-width:500px){
+
+.artist-search input{
+
+max-width:100%;
+
+}
+
+}
