@@ -6,17 +6,6 @@ import {
 import { useCart } from "../context/CartContext";
 import "../styles/Cart.css";
 
-// --------------------------------------------------
-// LIVE PAYPAL BACKEND
-// --------------------------------------------------
-
-const API_BASE_URL =
-  "https://irontuskrepository.onrender.com";
-
-// --------------------------------------------------
-// CART
-// --------------------------------------------------
-
 function Cart() {
   const {
     cart,
@@ -50,7 +39,7 @@ function Cart() {
         console.log("Loading PayPal configuration...");
 
         const response = await fetch(
-          `${API_BASE_URL}/api/paypal/config`
+          "https://irontuskrepository.onrender.com/api/paypal/config"
         );
 
         if (!response.ok) {
@@ -111,7 +100,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/paypal/create-order`,
+        "https://irontuskrepository.onrender.com/api/paypal/create-order",
         {
           method: "POST",
           headers: {
@@ -125,15 +114,11 @@ function Cart() {
 
       const data = await response.json();
 
-      console.log(
-        "PayPal order response:",
-        data
-      );
+      console.log("PayPal order response:", data);
 
       if (!response.ok) {
         throw new Error(
-          data.error ||
-            "Unable to create PayPal order."
+          data.error || "Unable to create PayPal order."
         );
       }
 
@@ -145,10 +130,7 @@ function Cart() {
 
       return data.id;
     } catch (error) {
-      console.error(
-        "PayPal order error:",
-        error
-      );
+      console.error("PayPal order error:", error);
 
       setPaymentMessage(
         "We couldn't start PayPal checkout. Please try again."
@@ -165,17 +147,14 @@ function Cart() {
   // --------------------------------------------------
 
   const capturePayPalOrder = async (orderID) => {
-    console.log(
-      "Capturing PayPal order:",
-      orderID
-    );
+    console.log("Capturing PayPal order:", orderID);
 
     setPaypalLoading(true);
     setPaymentMessage("");
 
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/paypal/capture-order`,
+        "https://irontuskrepository.onrender.com/api/paypal/capture-order",
         {
           method: "POST",
           headers: {
@@ -189,15 +168,11 @@ function Cart() {
 
       const data = await response.json();
 
-      console.log(
-        "PayPal capture response:",
-        data
-      );
+      console.log("PayPal capture response:", data);
 
       if (!response.ok) {
         throw new Error(
-          data.error ||
-            "Unable to capture payment."
+          data.error || "Unable to capture payment."
         );
       }
 
@@ -329,10 +304,7 @@ function Cart() {
             type="button"
             className="clear-btn"
             onClick={() => {
-              console.log(
-                "EMPTY CART CLICKED"
-              );
-
+              console.log("EMPTY CART CLICKED");
               clearCart();
             }}
           >
@@ -402,9 +374,7 @@ function Cart() {
                       shape: "rect",
                       label: "paypal",
                     }}
-                    createOrder={
-                      createPayPalOrder
-                    }
+                    createOrder={createPayPalOrder}
                     onApprove={async (data) => {
                       await capturePayPalOrder(
                         data.orderID
