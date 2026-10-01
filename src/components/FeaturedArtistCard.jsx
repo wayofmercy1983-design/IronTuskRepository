@@ -12,19 +12,16 @@ function FeaturedArtistCard({ artist }) {
         className="featured-artist-image"
       />
 
+      <Link to={`/artists/${artist.slug}`} onClick={playClick} className="featured-artist-image-link">
+        <span className="artist-tile-label">{artist.name}</span>
+      </Link>
+
       <div className="featured-artist-info">
         <h3>{artist.name}</h3>
 
         <p>{artist.genre}</p>
 
-        <Link
-          to={`/artists/${artist.slug}`}
-          onClick={playClick}
-        >
-          <button type="button">
-            View Artist
-          </button>
-        </Link>
+        <Link to={`/artists/${artist.slug}`} onClick={playClick}>View Artist</Link>
       </div>
     </article>
   );

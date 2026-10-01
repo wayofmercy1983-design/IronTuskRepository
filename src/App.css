@@ -4,62 +4,17 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #111;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(#1a1a1a, #000);
-}
-
-.hero h1 {
-  font-size: 4rem;
-  color: gold;
-  letter-spacing: 4px;
-}
-
-.hero p {
-  margin-top: 20px;
-  color: #ccc;
-  font-size: 1.3rem;
-}
-
-.buttons {
-  margin-top: 40px;
-  display: flex;
-  gap: 20px;
-}
-
-button {
-  background: gold;
-  color: black;
-  border: none;
-  padding: 15px 35px;
-  font-size: 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: #ffd700;
-}
+body { background: #080808; color: #fff; }
+main { min-height: 55vh; }
+button, a { font: inherit; }
 
 /* =========================================
    Iron Tusk Universal Hover Effect
 ========================================= */
 
 .glow-hover {
-    border: 1px solid transparent;
-    border-radius: 18px;
+    border: 1px solid #272727;
+    border-radius: 0;
     transition:
         transform 0.3s ease,
         border-color 0.3s ease,
@@ -67,7 +22,7 @@ button:hover {
 }
 
 .glow-hover:hover {
-    transform: translateY(-6px);
-    border-color: #8A2BE2;
-    box-shadow: 0 0 18px rgba(138, 43, 226, 0.35);
+    transform: translateY(-4px);
+    border-color: #D4AF37;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
 }

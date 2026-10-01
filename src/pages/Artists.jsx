@@ -1,40 +1,18 @@
+import artists from "../data/artists";
+import ArtistCard from "../components/ArtistCard";
+import "../styles/Releases.css";
+
 export default function Artists() {
   return (
-    <main
-      style={{
-        minHeight: "80vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        padding: "2rem",
-        background: "#111",
-        color: "#fff",
-      }}
-    >
-      <h1
-        style={{
-          color: "#D4AF37",
-          fontSize: "3rem",
-          marginBottom: "1rem",
-        }}
-      >
-        Artists
-      </h1>
-
-      <p
-        style={{
-          maxWidth: "600px",
-          fontSize: "1.2rem",
-          color: "#ccc",
-          lineHeight: "1.8",
-        }}
-      >
-        This section is currently under construction.
-        <br />
-        Artist profiles and additional content will be available soon.
-      </p>
+    <main className="releases-page artists-page">
+      <header className="releases-header">
+        <span className="page-eyebrow">The Roster</span>
+        <h1>Artists</h1>
+        <p>Meet the independent artists building their next chapter with Iron Tusk Records.</p>
+      </header>
+      <section className="artists-directory-grid">
+        {artists.map((artist) => <ArtistCard key={artist.id} artist={artist} />)}
+      </section>
     </main>
   );
 }

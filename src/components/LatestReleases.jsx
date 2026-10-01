@@ -15,9 +15,7 @@ function LatestReleases() {
       <div className="section-header">
         <div>
           <h2>Latest Releases</h2>
-          <p>
-            Explore the newest music from Iron Tusk Records.
-          </p>
+          <p>New music and catalog highlights from the label.</p>
         </div>
 
         <Link
@@ -25,7 +23,7 @@ function LatestReleases() {
           className="view-all-btn"
           onClick={playClick}
         >
-          View All Releases →
+          View All Releases
         </Link>
       </div>
 

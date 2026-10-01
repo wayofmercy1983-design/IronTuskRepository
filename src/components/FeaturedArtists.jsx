@@ -1,6 +1,7 @@
 import "../styles/FeaturedArtists.css";
 import FeaturedArtistCard from "./FeaturedArtistCard";
 import artists from "../data/artists";
+import { Link } from "react-router-dom";
 
 function FeaturedArtists() {
 
@@ -17,11 +18,9 @@ function FeaturedArtists() {
         <div>
           <h2>Featured Artists</h2>
 
-          <p>
-            Meet the artists shaping the sound of Iron Tusk Records.
-          </p>
+          <p>Independent voices. Real songs. One growing roster.</p>
         </div>
-
+        <Link to="/artists" className="section-link">View All Artists</Link>
       </div>
 
       <div className="artist-grid">

@@ -9,6 +9,8 @@ import "../styles/Navbar.css";
 
 function Navbar() {
   return (
+    <>
+    <div className="announcement-bar">INDEPENDENT MUSIC. ARTIST-FIRST. BUILT IN THE MIDWEST.</div>
     <header className="navbar">
       <div className="nav-logo">
         <NavLink to="/" onClick={playClick}>
@@ -16,9 +18,13 @@ function Navbar() {
         </NavLink>
       </div>
 
-      <nav className="nav-links">
+      <nav className="nav-links" aria-label="Main navigation">
         <NavLink to="/" onClick={playClick}>
           HOME
+        </NavLink>
+
+        <NavLink to="/artists" onClick={playClick}>
+          ARTISTS
         </NavLink>
 
         <NavLink to="/releases" onClick={playClick}>
@@ -56,6 +62,7 @@ function Navbar() {
         </NavLink>
       </div>
     </header>
+    </>
   );
 }
 

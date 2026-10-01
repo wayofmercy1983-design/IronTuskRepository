@@ -13,9 +13,9 @@ body,
 #root {
     width: 100%;
     min-height: 100%;
-    background: #111;
+    background: #080808;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 /* Remove browser defaults */
@@ -23,3 +23,6 @@ body,
 body {
     overflow-x: hidden;
 }
+
+body::selection { background: #D4AF37; color: #080808; }
+a, button { -webkit-tap-highlight-color: transparent; }
