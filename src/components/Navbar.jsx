@@ -45,13 +45,13 @@ function Navbar() {
       </nav>
 
       <div className="nav-actions">
-        <NavLink
-          to="/shop"
+        <a
+          href="https://kunaki.com/MSales.asp?PublisherId=246886&PP=1"
           className="shop-btn"
           onClick={playClick}
         >
           SHOP
-        </NavLink>
+        </a>
 
         <NavLink
           to="/cart"

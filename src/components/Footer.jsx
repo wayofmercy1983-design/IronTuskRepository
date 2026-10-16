@@ -46,7 +46,7 @@ function Footer() {
 
       <nav className="footer-links">
         <strong>Iron Tusk</strong>
-        <NavLink to="/shop" onClick={playClick}>Shop</NavLink>
+        <a href="https://kunaki.com/MSales.asp?PublisherId=246886&PP=1" onClick={playClick}>Shop</a>
         <NavLink to="/about" onClick={playClick}>About</NavLink>
         <NavLink to="/contact" onClick={playClick}>Contact</NavLink>
       </nav>
