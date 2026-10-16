@@ -1,5 +1,6 @@
 import "./Shop.css";
 import { useCart } from "../context/CartContext";
+import { catalog } from "../data/catalog";
 
 const products = [
   {
@@ -22,6 +23,7 @@ const products = [
     button: "Pre-Order EP",
     availableDate: "PRE-ORDER — Ships October 30, 2026",
   },
+  ...catalog,
 ];
 
 export default function Shop() {
@@ -45,6 +47,9 @@ export default function Shop() {
         <p>
           Music from the artists of Iron Tusk Records.
         </p>
+        <p>CD and vinyl prices exclude shipping. Shipping is calculated on Kunaki.</p>
+        <a className="shop-buy-button" href="https://kunaki.com/MSales.asp?PublisherId=246886&PP=1" target="_blank" rel="noopener noreferrer">Buy multiple releases ↗</a>
+        <p>Politics and Other Strange Tales vinyl is available through its individual link below.</p>
       </section>
 
       <section className="shop-products">
@@ -52,15 +57,6 @@ export default function Shop() {
           <article
             className="shop-card"
             key={product.id}
-            onClick={() => handleAddToCart(product)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                handleAddToCart(product);
-              }
-            }}
           >
             <div className="shop-image-container">
               <img
@@ -82,14 +78,19 @@ export default function Shop() {
               </div>
 
               <div className="shop-price">
-                ${product.price.toFixed(2)}
+                {product.price != null ? `$${product.price.toFixed(2)}` : 'Purchase options coming soon'}
               </div>
 
               <div className="shop-available">
-                {product.availableDate}
+                {product.availableDate || (product.buyUrl ? 'AVAILABLE NOW' : '')}
               </div>
 
-              <button
+              {product.buyUrl ? (
+                <>
+                  <a className="shop-buy-button" href={product.buyUrl} target="_blank" rel="noopener noreferrer" aria-label={`Buy ${product.title} CD (opens a new tab)`}>Buy CD ↗</a>
+                  <p className="shop-purchase-note">Pay through PayPal on Kunaki. Shipping calculated there.</p>
+                </>
+              ) : product.button ? <button
                 type="button"
                 className="shop-buy-button"
                 onClick={(event) => {
@@ -98,7 +99,14 @@ export default function Shop() {
                 }}
               >
                 {product.button}
-              </button>
+              </button> : null}
+              {product.vinylUrl && (
+                <div className="shop-vinyl">
+                  <p>Vinyl · {product.vinylPrice ? `${product.vinylPrice} plus shipping` : 'See price and shipping on Kunaki'}</p>
+                  <a className="shop-buy-button" href={product.vinylUrl} target="_blank" rel="noopener noreferrer" aria-label={`View ${product.title} vinyl (opens a new tab)`}>View vinyl ↗</a>
+                  <p className="shop-purchase-note">Choose “buy record (retail)” on Kunaki.</p>
+                </div>
+              )}
             </div>
           </article>
         ))}

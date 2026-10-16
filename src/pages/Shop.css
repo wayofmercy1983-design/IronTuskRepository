@@ -42,7 +42,7 @@ min-height: 70vh;
   border: 1px solid #a6a297;
   border-radius: 0;
   box-shadow: none;
-  cursor: pointer;
+  cursor: default;
 }
 
 .shop-card:hover {
@@ -118,6 +118,11 @@ min-height: 70vh;
   color: #191817;
   transform: none;
 }
+
+.shop-buy-button { text-decoration: none; }
+.shop-purchase-note { font-size: .8rem; line-height: 1.5; margin: 10px 0 0; }
+.shop-vinyl { border-top: 1px solid #aaa69b; margin-top: 16px; padding-top: 12px; }
+.shop-vinyl p { font-size: .8rem; line-height: 1.5; }
 
 @media (max-width: 650px) {
   .shop-page {
