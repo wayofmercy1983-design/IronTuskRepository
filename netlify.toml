@@ -1,0 +1,3 @@
+[build]
+  command = "python3 restore-store.py"
+  publish = "restored-store/dist"
