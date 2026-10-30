@@ -11,7 +11,7 @@ const products = [
     price: 16.0,
     image: "/shop/power-chords.png",
     button: "Pre-Order CD",
-    buyUrl: "https://kunaki.com/Sales.asp?PID=PX008Q8MCO&PP=1",
+    buyUrl: "https://kunaki.com/Sales.asp?PID=PX00FFSL4M&PP=1",
     availableDate: "PRE-ORDER — Release October 30, 2026",
     purchaseNote: "Ships as soon as Kunaki makes your CD. Orders are not held until release day. Shipping calculated at checkout.",
   },

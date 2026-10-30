@@ -2,5 +2,8 @@
   command = "python3 restore-store.py"
   publish = "restored-store/dist"
 
+[build.environment]
+  NODE_VERSION = "24"
+
 [functions]
   directory = "restored-store/functions"
