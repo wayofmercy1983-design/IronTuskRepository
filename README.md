@@ -1,16 +1,35 @@
-# React + Vite
+# Iron Tusk Records website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Netlify builds the verified snapshot in `iron-tusk-store-source.zip` using `python3 restore-store.py`, publishes `restored-store/dist`, and packages `restored-store/functions`. The older React files in `src/` are retained for reference; `npm run build` does not build the deployed store.
 
-Currently, two official plugins are available:
+The snapshot preserves the live 16-product Stripe cart, server-authoritative pricing, customer-paid shipping, payment verification, durable orders, fulfillment safeguards, artist pages and images, and private Iron Tusk One manager.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Product connection
 
-## React Compiler
+- Thomas Ate the Cat, *Power Chords and Other Nonsense*, CD: `PX00FFSL4M`, $16 plus shipping.
+- Vinyl remains `PX00ZW89QC`, $50 plus shipping.
+- Defective CD `PX008Q8MCO` is rejected for new carts. Historical orders are not rewritten or automatically replaced.
+- Netlify's `KUNAKI_PRODUCT_THOMAS_POWER_CHORDS` setting must remain `PX00FFSL4M`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The shop builder, preorder list, authoritative server catalog, and functions are inside the snapshot. `store-source-manifest.json` lists each archived file and its SHA-256 checksum. The restore script verifies the entire archive before extraction. Media are recovered from an existing immutable deployment and checked against `source/assets-sha256.json`; the original restored homepage image is retained in the archive.
 
-## Expanding the ESLint configuration
+## Local validation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Use Node.js 24 and Python 3:
+
+```sh
+npm ci
+python3 restore-store.py --extract-only
+node --test restored-store/tests/*.test.mjs
+python3 restore-store.py
+```
+
+The 28 tests mock Stripe, Kunaki, and order storage. They do not charge, manufacture, refund, or create replacement orders. They cover corrected CD pricing and fulfillment IDs, separate shipping, rejected retired IDs, payment verification, duplicate prevention, ambiguous submissions, and product synchronization.
+
+To edit the snapshot, extract it, edit `restored-store`, then repack the archive and update its checksum in `restore-store.py` and the per-file manifest. Extracted files are ignored by Git: include changes in the archive before committing. Never commit credentials or private order data.
+
+## Deployment
+
+Keep the existing Netlify environment variables for Stripe, Kunaki, and fulfillment. Production uses the `LIVE` Kunaki mode; manufacturing is restricted to verified paid events at the production webhook. Do not invoke fulfillment or product-sync operations as deployment tests.
+
+Before publishing, verify the generated store bundle, checkout routes, six function packages and their streaming invocation, private `/one/` headers, and webhook signature rejection. A successful static-page upload alone does not confirm checkout health. Customer replacement orders require separate review and authorization.
