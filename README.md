@@ -8,6 +8,7 @@ The snapshot preserves the live 16-product Stripe cart, server-authoritative pri
 
 - Thomas Ate the Cat, *Power Chords and Other Nonsense*, CD: `PX00FFSL4M`, $16 plus shipping.
 - Vinyl remains `PX00ZW89QC`, $50 plus shipping.
+- Both formats are released as of October 30, 2026 and use standard purchase wording.
 - Defective CD `PX008Q8MCO` is rejected for new carts. Historical orders are not rewritten or automatically replaced.
 - Netlify's `KUNAKI_PRODUCT_THOMAS_POWER_CHORDS` setting must remain `PX00FFSL4M`.
 

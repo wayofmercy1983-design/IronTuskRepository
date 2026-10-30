@@ -69,11 +69,11 @@ const releases = [
     title: "Power Chords and Other Nonsense",
     artistSlug: "thomas-ate-the-cat",
     type: "Album",
-    releaseDate: "Coming Soon",
-    status: "Coming Soon",
+    releaseDate: "October 30, 2026",
+    status: "Released",
     genre: "Alternative Rock",
     description:
-      "The upcoming debut full-length album from Thomas Ate the Cat.",
+      "The debut full-length album from Thomas Ate the Cat.",
     cover: powerChords,
     links: {
       spotify: "",
