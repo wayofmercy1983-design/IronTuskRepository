@@ -25,7 +25,7 @@ node --test restored-store/tests/*.test.mjs
 python3 restore-store.py
 ```
 
-The 28 tests mock Stripe, Kunaki, and order storage. They do not charge, manufacture, refund, or create replacement orders. They cover corrected CD pricing and fulfillment IDs, separate shipping, rejected retired IDs, payment verification, duplicate prevention, ambiguous submissions, and product synchronization.
+The 39 tests mock Stripe, Kunaki, and order storage. They do not charge, manufacture, refund, or create replacement orders. They cover corrected CD pricing and fulfillment IDs, separate shipping, rejected retired IDs, payment verification, duplicate prevention, ambiguous submissions, and product synchronization.
 
 To edit the snapshot, extract it, edit `restored-store`, then repack the archive and update its checksum in `restore-store.py` and the per-file manifest. Extracted files are ignored by Git: include changes in the archive before committing. Never commit credentials or private order data.
 
@@ -34,3 +34,26 @@ To edit the snapshot, extract it, edit `restored-store`, then repack the archive
 Keep the existing Netlify environment variables for Stripe, Kunaki, and fulfillment. Production uses the `LIVE` Kunaki mode; manufacturing is restricted to verified paid events at the production webhook. Do not invoke fulfillment or product-sync operations as deployment tests.
 
 Before publishing, verify the generated store bundle, checkout routes, six function packages and their streaming invocation, private `/one/` headers, and webhook signature rejection. A successful static-page upload alone does not confirm checkout health. Customer replacement orders require separate review and authorization.
+
+## Private contract documents
+
+The Contracts page includes a document panel. Save a contract, refresh the list,
+select the artist's agreement, then upload PDF, JPG or PNG files up to 3 MiB each.
+Documents are stored in the private Iron Tusk One blob store, separate from the
+contract's terms. Owner authentication is required for uploads, lists and downloads;
+uploads also require the production origin. Files download as attachments and are
+never served from the public store. Uploading does not change agreement status or
+royalty terms. This feature stores documents; it does not parse or sign them.
+
+The eight document tests cover authorization, origin rejection, file validation,
+size limits, concurrent attachments, download persistence and unchanged terms.
+The browser preview uses synthetic records and in-memory storage only. Production
+blob persistence still needs verification after an approved deployment.
+
+## Statement period defaults
+
+New royalty entries select the current calendar quarter and year using the owner's
+local date (October–December is Q4). The period remains editable for late reports.
+Editing an existing royalty preserves its original accounting period, even if blank.
+The active manager bundle imports `source/one-dist/quarter.js`; three tests cover all
+months, quarter/year boundaries and historical periods. No stored records are migrated.
