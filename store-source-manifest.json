@@ -7,7 +7,7 @@
   "functions/lib/one/product-sync.mjs": "d66daadb6a3788acb1acd3fab86689f9312e84e0fb399c3e4c590146e7b0ffe7",
   "functions/lib/one/security.mjs": "6b3a16a67518e11800725015b08adf8a1679afe2b4236e86b4d550e382e65daa",
   "functions/lib/store.mjs": "7fb5bd2e37ccb61c6cb9155960aeb01426daffdd933ac23c85a6557fd1707d05",
-  "functions/one-api.mjs": "2d6a86106206c739db4eb1b59c6c7c61ea5269c1f2f66f41519574cd8af222c2",
+  "functions/one-api.mjs": "3cbb32426929f6e214f65a045ac385c638c2e90917e757e939eacba9f6ed5f7e",
   "functions/one-product-sync.mjs": "abfea9447c9fe075682bc0f39d1fb2a3c0318f5c5ad7a0f1dfd31b6c49083142",
   "functions/stripe-create-session.mjs": "27e0642ec4b77642f0a1fede2c5a920775c4b748c897b214009827028e6107d8",
   "functions/stripe-session-status.mjs": "857c6233bdc756c1429559712625992a19c91ec73062159faa17dcc60536e26a",
@@ -39,7 +39,7 @@
   "source/one-dist/favicon.png": "50f86c606c909e39234c19cd539d9168c765be760e83ef9591ce1829e31c6bd5",
   "source/one-dist/favicon.svg": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
   "source/one-dist/icons.svg": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
-  "source/one-dist/index.html": "a3c0cd2a7cd20bb07be8b8173bd5cc275c6c3a3f238c91f3eccb9cc29f2559b7",
+  "source/one-dist/index.html": "25f3fc2c00444c80575fa1746c03e9954a906fd54f6db90c69fa9477d1b51489",
   "source/one-dist/quarter.js": "5960390325037f344d44726588847d01b65d764437f4e0b97b61ed252edb42bd",
   "source/one-headers": "19d4eb2f70d9a1398886f9064dcd2be1988a08c8152a5c2e39d7c1a87efe65f9",
   "source/preorders.json": "fc69edef24870b7e2dca796435704af95092d0b3a122a24e663dbf689dc65b36",
@@ -49,5 +49,9 @@
   "tests/quarter.test.mjs": "c988f3d8988c4a0a953808acb9ac7f4321144aeb5d6678ea68bbaa47b2e28f87",
   "tests/store.test.mjs": "b5f746903ce2a74fccfd73c52fc6e4dba85fcc3a3ca042233b729ab1a5e1b82a",
   "source/one-dist/assets/index-contract-feedback-764eb84edd7c.js": "5f3b74cd872df2affc56ca4a5622034e4b6f4a9cdece9683c2e0860c9487d552",
-  "source/one-dist/assets/index-contract-layout-53cf572b611f.js": "53cf572b611ff88a17618a50a30c526a73b7831c72c95164ddb9723a308acfae"
+  "source/one-dist/assets/index-contract-layout-53cf572b611f.js": "53cf572b611ff88a17618a50a30c526a73b7831c72c95164ddb9723a308acfae",
+  "functions/lib/one/stripe-royalties.mjs": "a4724e9f2c43a7dc8d09409c2fca47446b1dc0c6a8924067676b19c48f9f70f7",
+  "source/one-dist/stripe-royalties.js": "70b9a9da240d14ad4701f3744cb4caf5a207e94700c59dd566dd53171e26c46b",
+  "source/one-dist/stripe-royalties.css": "89e54210e5274cc0b81387ca01a0a051db2df295604ff255449aa3df91abe3b2",
+  "tests/stripe-royalties.test.mjs": "ad7cc7d36a3ea1f30709e519540d67f462c2d1be6fbe4adb981e75d887f34f8a"
 }
