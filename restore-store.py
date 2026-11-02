@@ -3,7 +3,7 @@ import hashlib, io, os, subprocess, sys, zipfile
 root=Path(__file__).resolve().parent
 
 data=(root/"iron-tusk-store-source.zip").read_bytes()
-assert hashlib.sha256(data).hexdigest()=="111424e726daf5deb041d577048f13882ec51473edb2cfe5575eb8dd89f5b139", "Source checksum mismatch"
+assert hashlib.sha256(data).hexdigest()=="6d011d1ac8756886825d0d72d8df2613e39b7fb66bb141bbad6f594762808d0f", "Source checksum mismatch"
 with zipfile.ZipFile(io.BytesIO(data)) as archive:
  archive.extractall(root/"restored-store")
 if "--extract-only" not in sys.argv:
