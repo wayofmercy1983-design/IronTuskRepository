@@ -52,7 +52,7 @@
   "source/one-dist/assets/index-contract-layout-53cf572b611f.js": "53cf572b611ff88a17618a50a30c526a73b7831c72c95164ddb9723a308acfae",
   "functions/lib/one/stripe-royalties.mjs": "bfc8acaafab8ca04d78a93806c9331017d2546aacff9ab3d7a70f44203515969",
   "source/one-dist/stripe-royalties.js": "70b9a9da240d14ad4701f3744cb4caf5a207e94700c59dd566dd53171e26c46b",
-  "source/one-dist/stripe-royalties.css": "df7256d612810dea4a8954425a3388e5032d68e06daaa01ea17fc76b3614ef42",
+  "source/one-dist/stripe-royalties.css": "623b63000ca8a41cfc75a2303f1b5158569a18eb11ec1e5279aa9f1dfa389367",
   "tests/stripe-royalties.test.mjs": "ad7cc7d36a3ea1f30709e519540d67f462c2d1be6fbe4adb981e75d887f34f8a",
   "source/one-dist/stripe-gross.js": "75299b7b330561dbd2880e2eeafb1163b8b82e7ae0c0c6082a5043caea7a1d81",
   "source/one-dist/assets/index-stripe-gross-f6d3286689e4.js": "f6d3286689e44a2aadb077334e532e0ef594db3c12dd62f849d77ee79d726f7e",
