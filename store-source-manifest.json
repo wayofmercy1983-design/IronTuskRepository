@@ -16,7 +16,7 @@
   "source/assets-sha256.json": "c4c274c495e12ef92ced0959bad339b197424b0055b9fed6e6273890ee3eb49f",
   "source/assets.json": "a376acecb893cc234f68bdf5b8e2e49e1dba19001f096f25cfbb045748fcffe8",
   "source/catalog.json": "b057e9cb4c6027fbc17dd603f91c7797c20b58f116f380f49c30470837058791",
-  "source/oct22-index.html": "45fe87064c09e8929629263739b27cedc6cff1fc33bcffa7706ad68d39681eaa",
+  "source/oct22-index.html": "5d94264c9658891f1a95223de6c8ab8285dd0dfd0d3d512cb0226f285bac0e3d",
   "source/oct22-store.js": "b8eb51077d426a8c20910e05f4c27632317bc64fca9c555e7fccb05f07e9b1d2",
   "source/one-dist/assets/Analytics-CDUPytPk.png": "0991d51e896467a4913bb80f0a9ea0f5546d830c9ff897765532d54eb01087a5",
   "source/one-dist/assets/Artist-tP2soSdu.png": "b94fa8bfcd8c10dd7a64ae7e313fe48e09fc9b91297d2a6125627250df724f02",
@@ -39,7 +39,7 @@
   "source/one-dist/favicon.png": "50f86c606c909e39234c19cd539d9168c765be760e83ef9591ce1829e31c6bd5",
   "source/one-dist/favicon.svg": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
   "source/one-dist/icons.svg": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
-  "source/one-dist/index.html": "d37f5bddc3ebd714ab7bcc9c281e52f67e96e0dd996aebeb655a73ed9788478a",
+  "source/one-dist/index.html": "fc55ce707a325de1a04732065f96496df44b5b115711610fefa1c1312a43e042",
   "source/one-dist/quarter.js": "5960390325037f344d44726588847d01b65d764437f4e0b97b61ed252edb42bd",
   "source/one-headers": "19d4eb2f70d9a1398886f9064dcd2be1988a08c8152a5c2e39d7c1a87efe65f9",
   "source/preorders.json": "fc69edef24870b7e2dca796435704af95092d0b3a122a24e663dbf689dc65b36",
@@ -56,5 +56,6 @@
   "tests/stripe-royalties.test.mjs": "ad7cc7d36a3ea1f30709e519540d67f462c2d1be6fbe4adb981e75d887f34f8a",
   "source/one-dist/stripe-gross.js": "75299b7b330561dbd2880e2eeafb1163b8b82e7ae0c0c6082a5043caea7a1d81",
   "source/one-dist/assets/index-stripe-gross-f6d3286689e4.js": "f6d3286689e44a2aadb077334e532e0ef594db3c12dd62f849d77ee79d726f7e",
-  "tests/stripe-gross.test.mjs": "9bb5e4dda3170cbccf2a74e0b299465e5724d9f62b1d5918391ef396c7077384"
+  "tests/stripe-gross.test.mjs": "9bb5e4dda3170cbccf2a74e0b299465e5724d9f62b1d5918391ef396c7077384",
+  "source/one-dist/favicon-iron-tusk-50f86c606c90.png": "50f86c606c909e39234c19cd539d9168c765be760e83ef9591ce1829e31c6bd5"
 }
