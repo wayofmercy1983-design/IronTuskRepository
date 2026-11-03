@@ -1,0 +1,33 @@
+/* Two typefaces across the storefront: Arial for reading, Impact for headings. */
+body, #root { font-family: Arial, sans-serif !important; }
+#root * { font-family: inherit !important; }
+#root h1, #root h2, #root h3 { font-family: Impact, sans-serif !important; font-weight: 400; }
+#root p { line-height: 1.6; }
+#root .hero-copy { font-size: 1rem; }
+#root .hero h1 { color: #fff; }
+#root .section-header h2 { font-size: 2rem; }
+#root .shop-card h2, #root .preorder-panel h2 {
+  font-family: Arial, sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: normal;
+}
+#root .shop-product-artist, #root .shop-product-format { font-size: .875rem; line-height: 1.5; }
+#root .shop-product-price { font-size: 1.125rem; }
+#root .shop-buy-button { font-size: .875rem; }
+.shop-product-artwork {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #17131b;
+  margin: 0 0 18px;
+}
+#root .shop-products { align-items: stretch; }
+#root .shop-card { display: flex; flex-direction: column; min-width: 0; }
+#root .shop-card-actions { margin-top: auto; padding-top: 16px; }
+@media (max-width: 600px) {
+  #root .shop-products { grid-template-columns: 1fr; }
+}
