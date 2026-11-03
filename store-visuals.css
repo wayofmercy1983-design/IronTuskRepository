@@ -34,6 +34,7 @@ body, #root { font-family: Arial, sans-serif !important; }
 
 /* Balanced header with explicit rows when the full navigation no longer fits. */
 #root .announcement-bar {
+  font-weight: 700;
   padding: 8px 20px;
   background: #e6e1d4;
   color: #493454;
