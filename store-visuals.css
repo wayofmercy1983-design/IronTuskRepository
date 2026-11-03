@@ -31,3 +31,129 @@ body, #root { font-family: Arial, sans-serif !important; }
 @media (max-width: 600px) {
   #root .shop-products { grid-template-columns: 1fr; }
 }
+
+/* Balanced header with explicit rows when the full navigation no longer fits. */
+#root .announcement-bar {
+  padding: 8px 20px;
+  background: #e6e1d4;
+  color: #493454;
+  font-size: .6875rem;
+  line-height: 1.5;
+  letter-spacing: .06em;
+  text-align: center;
+}
+#root .navbar {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 16px max(24px, calc((100% - 1360px) / 2));
+  min-height: 96px;
+  background: #f1efe7;
+  border-bottom: 1px solid #d9cdbb;
+}
+#root .nav-logo { display: flex; align-items: center; }
+#root .nav-logo a { display: inline-flex; align-items: center; }
+#root .nav-logo img { display: block; width: 140px; max-width: 100%; height: auto; max-height: 64px; object-fit: contain; }
+#root .nav-links {
+  grid-area: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  overflow: visible;
+}
+#root .nav-links a, #root .account-nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: #54246e;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .025em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#root .nav-links a::after {
+  display: block;
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #c29a26;
+  transform: scaleX(0);
+  transition: transform .15s ease;
+}
+#root .nav-links a.active, #root .nav-links a:hover { color: #54246e; text-decoration: none; }
+#root .nav-links a.active::after, #root .nav-links a:hover::after { transform: scaleX(1); }
+#root .nav-actions { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-end; gap: 10px; }
+#root .account-nav-link { flex: 0 0 auto; margin-right: 4px; text-align: center; }
+#root .account-nav-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+#root .nav-actions .shop-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  min-width: 72px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #c29a26;
+  border-radius: 3px;
+  background: #d4af37;
+  color: #341447;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .025em;
+  text-decoration: none;
+}
+#root .nav-actions .shop-btn:hover { background: #e3c45c; color: #341447; }
+#root .cart-nav-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  margin: 0;
+  border-radius: 50%;
+  background: #54246e;
+  color: #fff;
+  font-size: .6875rem;
+  line-height: 1;
+}
+#root .navbar a:focus:not(:focus-visible) { outline: none; }
+#root .navbar a:focus-visible { outline: 3px solid #752e9b; outline-offset: 4px; border-radius: 3px; }
+@media (max-width: 1199px) {
+  #root .navbar { grid-template-columns: 140px 1fr; gap: 12px 24px; }
+  #root .nav-links { grid-column: 1 / -1; grid-row: 2; gap: 28px; flex-wrap: wrap; }
+  #root .nav-actions { grid-column: 2; grid-row: 1; }
+}
+@media (max-width: 600px) {
+  #root .announcement-bar { padding: 7px 16px; font-size: .625rem; }
+  #root .navbar { grid-template-columns: 1fr; padding: 14px 16px 12px; gap: 12px; }
+  #root .nav-logo { justify-content: center; }
+  #root .nav-logo img { width: 130px; }
+  #root .nav-actions { grid-column: 1; grid-row: 2; justify-content: center; gap: 8px; }
+  #root .nav-actions .shop-btn { padding: 0 12px; min-width: 64px; }
+  #root .account-nav-link { margin: 0 4px 0 0; }
+  #root .nav-links { grid-column: 1; grid-row: 3; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 8px; padding-top: 4px; border-top: 1px solid #dfd5c3; }
+  #root .nav-links a { font-size: .6875rem; }
+  #root .nav-links a:last-child { grid-column: span 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #root .nav-links a::after { transition: none; }
+}
