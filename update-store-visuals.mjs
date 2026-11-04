@@ -39,3 +39,4 @@ fs.writeFileSync(path.join(dist, cssName), css);
 html = html.replace(oldBundle, bundle).replace('</head>', `<link rel="stylesheet" href="/${cssName}">\n</head>`);
 fs.writeFileSync(path.join(dist, 'index.html'), html);
 console.log(`Updated artwork for ${catalog.length} products and consistent typography.`);
+fs.cpSync(path.join(root, 'public/tatc'), path.join(dist, 'tatc'), {recursive:true});
