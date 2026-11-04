@@ -2,15 +2,16 @@
 
 Netlify builds the verified snapshot in `iron-tusk-store-source.zip` using `python3 restore-store.py`, publishes `restored-store/dist`, and packages `restored-store/functions`. The older React files in `src/` are retained for reference; `npm run build` does not build the deployed store.
 
-The snapshot preserves the live 16-product Stripe cart, server-authoritative pricing, customer-paid shipping, payment verification, durable orders, fulfillment safeguards, artist pages and images, and private Iron Tusk One manager.
+The snapshot preserves the live 17-product Stripe cart, server-authoritative pricing, customer-paid shipping, payment verification, durable orders, fulfillment safeguards, artist pages and images, and private Iron Tusk One manager.
 
 ## Product connection
 
-- Thomas Ate the Cat, *Power Chords and Other Nonsense*, CD: `PX00FFSL4M`, $16 plus shipping.
-- Vinyl remains `PX00ZW89QC`, $50 plus shipping.
+- Thomas Ate the Cat, *Power Chords and Other Nonsense*, CD: `PX00IMM4M3`, $16 plus shipping.
+- Without, *Self Titled*, vinyl: `PX00H4Y785`, $50 plus shipping.
+- Thomas Ate the Cat vinyl remains `PX00ZW89QC`, $50 plus shipping.
 - Both formats are released as of October 30, 2026 and use standard purchase wording.
 - Defective CD `PX008Q8MCO` is rejected for new carts. Historical orders are not rewritten or automatically replaced.
-- Netlify's `KUNAKI_PRODUCT_THOMAS_POWER_CHORDS` setting must remain `PX00FFSL4M`.
+- Netlify's `KUNAKI_PRODUCT_THOMAS_POWER_CHORDS` setting must remain `PX00IMM4M3`.
 
 The shop builder, preorder list, authoritative server catalog, and functions are inside the snapshot. `store-source-manifest.json` lists each archived file and its SHA-256 checksum. The restore script verifies the entire archive before extraction. Media are recovered from an existing immutable deployment and checked against `source/assets-sha256.json`; the original restored homepage image is retained in the archive.
 
