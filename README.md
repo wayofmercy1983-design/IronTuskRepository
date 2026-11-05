@@ -32,6 +32,36 @@ To edit the snapshot, extract it, edit `restored-store`, then repack the archive
 
 ## Deployment
 
+### Public storefront improvements
+
+After restoring the verified snapshot and applying the existing artwork changes,
+`restore-store.py` runs `improve-storefront.mjs`. This checked post-build
+step adds accessible artist links, release detail routes, links to the matching
+physical formats, explicit cart subtotal wording, and route-specific initial HTML
+and metadata. It removes placeholder social URLs and derives the two missing
+catalog entries from the existing physical product catalog without inventing dates.
+The snapshot archive, server catalog, payment functions, and private manager remain
+the sources for their existing behavior.
+
+The script emits 25 public sitemap routes, real robots and sitemap files, and a
+404 fallback while retaining the account, workspace and checkout rewrites. Cart,
+private pages, and deploy previews are excluded from indexing. Route metadata also
+updates during client navigation. Public initial HTML is a readable static fallback;
+the preserved React application replaces it when JavaScript loads.
+
+Validate these additions after `python3 restore-store.py` with:
+
+```sh
+node --test storefront.test.mjs
+```
+
+CI builds these static additions without downloading the immutable media bundle.
+The production build still verifies and recovers the original media. A changed
+upstream snapshot must update the explicitly checked transforms; do not silently
+skip a missing transform. The owner confirmed that orders ship in 2–3 business days
+and delivery time depends on the customer-selected method. Return policies,
+edition limits and TBA dates still require confirmed business information.
+
 Keep the existing Netlify environment variables for Stripe, Kunaki, and fulfillment. Production uses the `LIVE` Kunaki mode; manufacturing is restricted to verified paid events at the production webhook. Do not invoke fulfillment or product-sync operations as deployment tests.
 
 Before publishing, verify the generated store bundle, checkout routes, six function packages and their streaming invocation, private `/one/` headers, and webhook signature rejection. A successful static-page upload alone does not confirm checkout health. Customer replacement orders require separate review and authorization.

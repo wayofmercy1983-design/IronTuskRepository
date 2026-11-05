@@ -11,3 +11,4 @@ if "--extract-only" not in sys.argv:
  for name in ["recover_assets.py","build.py"]:
   subprocess.run([sys.executable,str(root/"restored-store"/name)],check=True,env=env)
  subprocess.run(["node",str(root/"update-store-visuals.mjs")],check=True,env=env)
+ subprocess.run(["node",str(root/"improve-storefront.mjs")],check=True,env=env)
