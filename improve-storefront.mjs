@@ -108,7 +108,7 @@ export function createPages(data, {preview = false} = {}) {
   const organization = {'@type':'Organization', '@id':origin + '/#label', name:'Iron Tusk Records', url:origin + '/',
     logo:origin + logo, email:'irontuskrecords513@gmail.com', address:{'@type':'PostalAddress', addressLocality:'Hamilton', addressRegion:'Ohio', addressCountry:'US'}};
   function add(urlPath, heading, description, content, {image = logo, entity, noindex = false} = {}) {
-    pages[urlPath] = {title: heading + ' | Iron Tusk Records', heading, description, url:origin + (urlPath === '/404' ? '/' : urlPath),
+    pages[urlPath] = {title: heading + ' | Iron Tusk Records', heading, description, url:origin + (['/', '/404'].includes(urlPath) ? '/' : urlPath + '/'),
       image: origin + image, noindex: noindex || preview,
       structuredData: {'@context':'https://schema.org', '@graph':[organization, ...(entity ? [entity] : [])]},
       content: `<main class="store-static">${navigation}<h1>${escape(heading)}</h1>${content}</main>`};
@@ -187,7 +187,7 @@ export function improveStorefront() {
     fs.writeFileSync(output, renderPage(html, page));
   }
   const sitemapPaths = Object.keys(pages).filter(url=>!['/cart','/404'].includes(url));
-  fs.writeFileSync(path.join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapPaths.map(url=>`  <url><loc>${origin}${url}</loc></url>`).join('\n') + '\n</urlset>\n');
+  fs.writeFileSync(path.join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapPaths.map(url=>`  <url><loc>${origin}${url === '/' ? '/' : url + '/'}</loc></url>`).join('\n') + '\n</urlset>\n');
   fs.writeFileSync(path.join(dist, 'robots.txt'), 'User-agent: *\nAllow: /\nDisallow: /one/\nDisallow: /account/\nDisallow: /cart\nDisallow: /store-api/\nDisallow: /.netlify/functions/\nSitemap: ' + origin + '/sitemap.xml\n');
   let redirects = fs.readFileSync(path.join(dist, '_redirects'), 'utf8');
   const routes = Object.keys(pages).filter(url=>!['/','/404'].includes(url)).map(url=>`${url} ${url}/index.html 200\n${url}/ ${url}/index.html 200`).join('\n');

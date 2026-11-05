@@ -41,7 +41,7 @@ test('public routes have unique titles, visible initial content, canonical and s
     assert.match(document, /<div id="root"><main/);
     assert.match(document, /<h1>/);
     assert.match(document, /<meta name="description" content="[^"]+"/);
-    assert.ok(document.includes('rel="canonical" href="https://irontuskrecords.com' + route + '"'));
+    assert.ok(document.includes('rel="canonical" href="https://irontuskrecords.com' + (route === '/' ? '/' : route + '/') + '"'));
     assert.match(document, /property="og:image"/);
     assert.match(document, /name="twitter:card"/);
     const structured = JSON.parse(document.match(/id="store-structured-data">(.*?)<\/script>/s)[1]);
@@ -65,7 +65,7 @@ test('sitemap and robots expose public catalog and exclude transactional and pri
   const sitemap = read('sitemap.xml');
   assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
   assert.equal((sitemap.match(/<loc>/g)||[]).length, 25);
-  for (const privateRoute of ['/cart','/account','/one','/404']) assert.ok(!sitemap.includes('irontuskrecords.com'+privateRoute+'<'));
+  for (const privateRoute of ['/cart','/account','/one','/404']) assert.ok(!sitemap.includes('irontuskrecords.com'+privateRoute+'/'));
   assert.match(read('cart/index.html'), /name="robots" content="noindex, follow"/);
   assert.match(read('404.html'), /name="robots" content="noindex, follow"/);
 });

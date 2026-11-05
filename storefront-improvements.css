@@ -9,6 +9,7 @@
 .store-release-header > img {width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #191817;}
 .store-release-header h1 {font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin: 0 0 18px;}
 .store-release-header h2 {font-size: 1.5rem;}
+.store-release-header section > a:not(.store-format-link) {display: block; margin: 8px 0;}
 .store-format-link {display: inline-flex; align-items: center; min-height: 44px; padding: 10px 14px; margin: 4px 10px 8px 0; border: 1px solid #642788; color: #4c2066; font-weight: bold; text-decoration: underline; text-underline-offset: 3px;}
 .store-release-page .release-links {display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;}
 .store-static {max-width: 1100px; margin: 24px auto; padding: 24px;}
