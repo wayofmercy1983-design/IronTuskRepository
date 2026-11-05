@@ -31,6 +31,10 @@ if (js.split(card).length !== 2) throw new Error('Expected exactly one product c
 js = js.replace('function jr(){', `const productArtwork=${JSON.stringify(covers)};function jr(){`);
 js = js.replace(card, card + '(0,j.jsx)(`img`,{className:`shop-product-artwork`,src:`/product-artwork/${productArtwork[t.title]}`,alt:`${t.artist} — ${t.title} artwork`,width:600,height:600,loading:`lazy`,decoding:`async`}),');
 js = js.replace('src:`/shop/power-chords.png`', 'src:`/product-artwork/power-chords.jpg`');
+const snotRelease = 'artistSlug:`the-snot-rockets`,type:`EP`,releaseDate:`Coming Soon`,status:`Coming Soon`';
+if (!js.includes(snotRelease)) throw new Error('Snot Rockets release entry was not found');
+js = js.replace(snotRelease, 'artistSlug:`the-snot-rockets`,type:`EP`,releaseDate:`October 30, 2026`,status:`Released`');
+js = js.replace('className:`shop-card`,children:[', 'className:`shop-card`,id:t.id===`PX00Z925MY`?`snot-rockets-vinyl`:t.id===`PX00ZUDROB`?`snot-rockets-cd`:undefined,children:[');
 const bundle = `store-${crypto.createHash('sha256').update(js).digest('hex').slice(0,12)}.js`;
 fs.writeFileSync(path.join(dist, 'assets', bundle), js);
 const css = fs.readFileSync(path.join(root, 'store-visuals.css'));
@@ -40,3 +44,4 @@ html = html.replace(oldBundle, bundle).replace('</head>', `<link rel="stylesheet
 fs.writeFileSync(path.join(dist, 'index.html'), html);
 console.log(`Updated artwork for ${catalog.length} products and consistent typography.`);
 fs.cpSync(path.join(root, 'public/tatc'), path.join(dist, 'tatc'), {recursive:true});
+fs.cpSync(path.join(root, 'public/snot-rockets'), path.join(dist, 'snot-rockets'), {recursive:true});
