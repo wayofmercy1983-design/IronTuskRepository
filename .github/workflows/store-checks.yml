@@ -20,3 +20,7 @@ jobs:
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: python3 restore-store.py --extract-only
       - run: node --test restored-store/tests/*.test.mjs
+      - run: python3 restored-store/build.py
+      - run: node update-store-visuals.mjs
+      - run: node improve-storefront.mjs
+      - run: node --test storefront.test.mjs
