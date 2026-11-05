@@ -17,6 +17,7 @@ const raw = fs.readFileSync(path.join(root,'restored-store/source/oct22-store.js
 const artwork = JSON.parse(bundle.match(/const productArtwork=(\{.*?\});function jr/s)[1]);
 const data = getData(raw, catalog, artwork);
 const pages = createPages(data);
+const preservedAssets = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'restored-store/source/assets-sha256.json'), 'utf8'))));
 
 test('every physical offer retains its authoritative ID and price and has a release destination', () => {
   const start = bundle.indexOf('var Ar=') + 'var Ar='.length;
@@ -48,12 +49,12 @@ test('public routes have unique titles, visible initial content, canonical and s
   }
 });
 
-test('all generated local links resolve to a page, static file, or preserved account route', () => {
+test('all generated local links resolve to a page, static file, or declared preserved asset', () => {
   for (const route of Object.keys(pages)) {
     const file = route === '/404' ? '404.html' : route === '/' ? 'index.html' : route.slice(1) + '/index.html';
     for (const [,href] of read(file).matchAll(/href="(\/[^"#]*)(?:#[^"]*)?"/g)) {
       const localPath = href.split('?')[0];
-      assert.ok(localPath === '/' || fs.existsSync(path.join(dist, localPath)) || fs.existsSync(path.join(dist,localPath,'index.html')), `${route} links to missing ${href}`);
+      assert.ok(localPath === '/' || preservedAssets.has(localPath) || fs.existsSync(path.join(dist, localPath)) || fs.existsSync(path.join(dist,localPath,'index.html')), `${route} links to missing ${href}`);
     }
   }
 });
