@@ -11,7 +11,7 @@
   "functions/lib/one/stripe-royalties.mjs": "bfc8acaafab8ca04d78a93806c9331017d2546aacff9ab3d7a70f44203515969",
   "functions/lib/one/team-access.mjs": "ae023e9bcc3fca8c6de8d77923d29bac097eddc2a755e9e2a20bdd22ad6f57b7",
   "functions/lib/shipping-regions.mjs": "ed36b8ea6dcbd5ec8f9340dfe614006abf2353f4c059c79bc79a2a3f331ab0e9",
-  "functions/lib/store.mjs": "6bd2b8cc206ac24315308ed07b63f9a3975f11913556949eba29195c93918569",
+  "functions/lib/store.mjs": "19b6494e3e103f295139331b45d69e580fccf414b0c0819d7661b26e8c4d0c4f",
   "functions/one-api.mjs": "0beee87f420b486fec0b23e5113006518d44079e650bc2d99ec4681e92a8e9c1",
   "functions/one-product-sync.mjs": "abfea9447c9fe075682bc0f39d1fb2a3c0318f5c5ad7a0f1dfd31b6c49083142",
   "functions/stripe-create-session.mjs": "e7c0e3f5996b2bf47c1b05f42247bcf0ed8cdc690a4e841498602753113d8380",
@@ -70,7 +70,7 @@
   "tests/kunaki-products.test.mjs": "da30473be6fd5e7bc77a2d10fb6a7ecbbe358ea5e06fbdc9ea9e60e0bd4095ba",
   "tests/product-sync.test.mjs": "5f632fa0020709ceba028cc8469e645396835dc14dc7f315b8c36454c4f5a982",
   "tests/quarter.test.mjs": "c988f3d8988c4a0a953808acb9ac7f4321144aeb5d6678ea68bbaa47b2e28f87",
-  "tests/store.test.mjs": "2534e25c6ebd49bc1d01f547eec4fb280ae13c5f80d45d3ee74445dc076c870e",
+  "tests/store.test.mjs": "273337056493a53a4eb23cf999c406a9034259a40d6e4a8a44d8b62049f7fc48",
   "tests/stripe-gross.test.mjs": "9bb5e4dda3170cbccf2a74e0b299465e5724d9f62b1d5918391ef396c7077384",
   "tests/stripe-royalties.test.mjs": "ad7cc7d36a3ea1f30709e519540d67f462c2d1be6fbe4adb981e75d887f34f8a",
   "tests/team-access.test.mjs": "518dd32ee23356838b410ba8036a1dac860e4c9edb604ee61edc2e3b0b7bbdb3"
