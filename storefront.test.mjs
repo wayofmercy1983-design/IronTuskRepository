@@ -140,3 +140,18 @@ test('the shop and cart use the same December price rules as the server', () => 
   assert.match(bundle, /offerPricing=priceDecemberCart\(S,offersNow\)/);
   assert.match(bundle, /shippingDescription:l,requestId:_.current,expectedTotal:totalCents/);
 });
+
+test('cart defaults to a direct card button and offers other methods separately', () => {
+  assert.match(bundle, /StoreCheckoutButtons,\{pending:p,disabled:!l,total:ne,onCheckout:async paymentMethod/);
+  assert.match(bundle, /expectedTotal:totalCents,paymentMethod/);
+  const start = bundle.indexOf('function StoreCheckoutButtons(');
+  const end = bundle.indexOf('function StoreReleasePage(',start);
+  const options = [];
+  const output = vm.runInNewContext(bundle.slice(start,end) + '\nStoreCheckoutButtons(input)', {
+    j: {jsx: (_tag,props)=>props, jsxs: (_tag,props)=>props}, Fr: total=>'$'+total,
+    input: {pending:false,disabled:false,total:11.29,onCheckout:value=>options.push(value)},
+  });
+  assert.equal(output.children[0].children,'Pay by card · $11.29');
+  output.children.forEach(button=>button.onClick());
+  assert.deepEqual(options,['card','automatic']);
+});

@@ -20,6 +20,7 @@
 .store-release-header audio, .store-static audio {max-width: 100%;}
 .store-december-offers {max-width: 1100px; margin: 0 auto 24px; padding: 18px 24px; border: 1px solid #642788; border-radius: 8px;}
 .store-december-offers h2 {margin-top: 0;}
+.store-checkout-actions {display: flex; flex-wrap: wrap; align-items: center; gap: 10px;}
 @media(max-width: 650px) {
   .store-release-header {grid-template-columns: 1fr; gap: 22px;}
   .store-release-header > img {max-width: 380px; margin: auto;}

@@ -31,6 +31,15 @@ function StoreDiscountLine(discount) {
   return j.jsxs('p', {children:[label, j.jsx('strong', {children:'−' + Fr(discount.cents / 100)})]}, discount.offer);
 }
 
+function StoreCheckoutButtons({pending, disabled, total, onCheckout}) {
+  return j.jsxs('div', {className:'store-checkout-actions', children:[
+    j.jsx('button', {type:'button', className:'checkout-btn', disabled:pending||disabled,
+      onClick:()=>onCheckout('card'), children:pending?'Connecting to Stripe…':'Pay by card · '+Fr(total)}),
+    j.jsx('button', {type:'button', className:'store-format-link', disabled:pending||disabled,
+      onClick:()=>onCheckout('automatic'), children:'Other payment methods'}),
+  ]});
+}
+
 function StoreReleasePage() {
   const {slug} = bt();
   const release = yr.find(item => item.slug === slug);

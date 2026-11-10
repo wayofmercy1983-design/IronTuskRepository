@@ -104,7 +104,10 @@ export function patchBundle(bundle, data, pageInfo) {
     'offerPricing=priceDecemberCart(S,offersNow),C=offerPricing.itemsCents/100,te=s.find(e=>e.description===l),totalCents=offerPricing.subtotalCents+Math.round(Number(te?.price||0)*100),ne=totalCents/100');
   replace('children:Fr(C)})]}),te&&', 'children:Fr(C)})]}),...offerPricing.discounts.map(StoreDiscountLine),te&&');
   replace('let n=[...t.options||[]].sort(', 'syncOffersClock(t.pricingTime);let n=[...t.options||[]].sort(');
-  replace('shippingDescription:l,requestId:_.current', 'shippingDescription:l,requestId:_.current,expectedTotal:totalCents');
+  replace('(0,j.jsx)(`button`,{type:`button`,className:`checkout-btn`,onClick:async()=>{if(!p)',
+    'j.jsx(StoreCheckoutButtons,{pending:p,disabled:!l,total:ne,onCheckout:async paymentMethod=>{if(!p)');
+  replace('},disabled:p||!l,children:p?`Connecting to secure checkout…`:`Pay securely · ${Fr(ne)}`})', '}})');
+  replace('shippingDescription:l,requestId:_.current', 'shippingDescription:l,requestId:_.current,expectedTotal:totalCents,paymentMethod');
   replace('if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);',
     'if(t.status===409){syncOffersClock(n.pricingTime);c([]);u(``);_.current=crypto.randomUUID()}if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);');
   const oldReleaseStart = js.indexOf('function Dr(){');
