@@ -30,20 +30,10 @@ export function getData(bundle, catalog, artwork) {
   for (const match of bundle.matchAll(/(?:var |,)([A-Za-z_$][\w$]*)=`(\/(?:assets|shop)\/[^`]+)`/g)) scope[match[1]] = match[2];
   const artists = JSON.parse(JSON.stringify(arrayExpression(bundle, '_r=', '];_r.forEach', scope)));
   const releases = JSON.parse(JSON.stringify(arrayExpression(bundle, 'var yr=', '];function br', scope)));
-  if (artists.length !== 6 || releases.length !== 9 || catalog.length !== 17) throw new Error('Unexpected catalog shape');
+  if (artists.length !== 6 || releases.length !== 9 || catalog.length !== 18) throw new Error('Unexpected catalog shape');
   for (const artist of artists) {
     artist.genre = artist.genre?.replace('Alternataive', 'Alternative');
     for (const key of Object.keys(artist.socials || {})) if (artist.socials[key].includes('...')) delete artist.socials[key];
-  }
-  for (const product of catalog) {
-    const artist = artists.find(item => item.name === product.artist);
-    if (!artist) throw new Error('Unknown product artist: ' + product.artist);
-    if (!releases.some(item => item.artistSlug === artist.slug && normal(item.title) === normal(product.title))) {
-      releases.push({id: Math.max(...releases.map(item => item.id)) + 1, title: product.title,
-        artistSlug: artist.slug, type: 'Release', releaseDate: 'Date not listed', status: 'Catalog',
-        genre: artist.genre || '', description: 'Explore physical formats of ' + product.title + ' by ' + artist.name + '.',
-        cover: '/product-artwork/' + artwork[product.title], links: {}});
-    }
   }
   releases.unshift({
     id: Math.max(...releases.map(item => item.id)) + 1,
@@ -58,9 +48,19 @@ export function getData(bundle, catalog, artwork) {
     audioPreview: '/release-media/ode-to-rfk-jr-preview.wav',
     links: {},
   });
+  for (const product of catalog) {
+    const artist = artists.find(item => item.name === product.artist);
+    if (!artist) throw new Error('Unknown product artist: ' + product.artist);
+    if (!releases.some(item => item.artistSlug === artist.slug && normal(item.title) === normal(product.title))) {
+      releases.push({id: Math.max(...releases.map(item => item.id)) + 1, title: product.title,
+        artistSlug: artist.slug, type: 'Release', releaseDate: 'Date not listed', status: 'Catalog',
+        genre: artist.genre || '', description: 'Explore physical formats of ' + product.title + ' by ' + artist.name + '.',
+        cover: artwork[product.title], links: {}});
+    }
+  }
   for (const release of releases) {
     release.slug = slug(release.title);
-    if (artwork[release.title]) release.cover = '/product-artwork/' + artwork[release.title];
+    if (artwork[release.title]) release.cover = artwork[release.title];
   }
   if (new Set(releases.map(item => item.slug)).size !== releases.length) throw new Error('Release slug collision');
   return {artists, releases, catalog};

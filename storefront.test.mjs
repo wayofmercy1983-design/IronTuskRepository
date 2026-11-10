@@ -23,7 +23,7 @@ test('every physical offer retains its authoritative ID and price and has a rele
   const start = bundle.indexOf('var Ar=') + 'var Ar='.length;
   const end = bundle.indexOf('];const productArtwork=', start) + 1;
   const products = JSON.parse(JSON.stringify(vm.runInNewContext('(' + bundle.slice(start, end) + ')')));
-  assert.equal(products.length, 17);
+  assert.equal(products.length, 18);
   assert.deepEqual(products.map(p=>[p.id,p.price]).sort(), catalog.map(p=>[p.id,p.price]).sort());
   for (const product of catalog) {
     const release = data.releases.find(r=>r.title.toLowerCase().replace(/[’']/g,'') === product.title.toLowerCase().replace(/[’']/g,''));
@@ -106,7 +106,7 @@ test('confirmed dispatch time is distinct from customer-selected delivery time',
   assert.ok(!bundle.includes('CDs and vinyl ship once manufacturing is complete.'));
 });
 
-test('ITR-012 links the artist and release to a playable preview without a physical offer', () => {
+test('ITR-012 links the artist, $5 CD offer and playable preview to a single release', () => {
   const release = data.releases.find(item => item.catalogNumber === 'ITR-012');
   const detail = read('release/ode-to-rfk-jr/index.html');
   assert.equal(release.artistSlug, 'bone-and-the-strangels');
@@ -115,6 +115,7 @@ test('ITR-012 links the artist and release to a playable preview without a physi
   assert.ok(detail.includes(`<audio controls preload="none" src="${release.audioPreview}"`));
   assert.ok(fs.existsSync(path.join(dist, release.audioPreview)));
   assert.ok(fs.existsSync(path.join(dist, release.cover)));
-  assert.ok(!detail.includes('href="/shop#'));
-  assert.ok(!catalog.some(item => item.title === release.title));
+  assert.ok(detail.includes('href="/shop#product-PX00YPHI7O">CD · ITR-012 · $5.00 + shipping'));
+  assert.ok(read('shop/index.html').includes('id="product-PX00YPHI7O"'));
+  assert.equal(data.releases.filter(item => item.title === release.title).length, 1);
 });

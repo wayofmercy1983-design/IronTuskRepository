@@ -16,7 +16,9 @@ const covers = {
   'Mother’s Day in April': 'mothers-day.jpg',
   'Scott’s Tune': 'scotts-tune.png',
   'No Intention': 'no-intention.png',
+  'Ode to RFK Jr.': '/release-media/ode-to-rfk-jr-cover.jpg',
 };
+const artwork = Object.fromEntries(Object.entries(covers).map(([title, file]) => [title, file.startsWith('/') ? file : '/product-artwork/' + file]));
 const catalog = JSON.parse(fs.readFileSync(path.join(root, 'restored-store/source/catalog.json'), 'utf8'));
 for (const item of catalog) {
   if (!covers[item.title]) throw new Error(`Missing artwork for ${item.title}`);
@@ -28,8 +30,8 @@ if (!oldBundle) throw new Error('Store bundle was not found');
 let js = fs.readFileSync(path.join(dist, 'assets', oldBundle), 'utf8');
 const card = 'className:`shop-card`,children:[';
 if (js.split(card).length !== 2) throw new Error('Expected exactly one product card template');
-js = js.replace('function jr(){', `const productArtwork=${JSON.stringify(covers)};function jr(){`);
-js = js.replace(card, card + '(0,j.jsx)(`img`,{className:`shop-product-artwork`,src:`/product-artwork/${productArtwork[t.title]}`,alt:`${t.artist} — ${t.title} artwork`,width:600,height:600,loading:`lazy`,decoding:`async`}),');
+js = js.replace('function jr(){', `const productArtwork=${JSON.stringify(artwork)};function jr(){`);
+js = js.replace(card, card + '(0,j.jsx)(`img`,{className:`shop-product-artwork`,src:productArtwork[t.title],alt:`${t.artist} — ${t.title} artwork`,width:600,height:600,loading:`lazy`,decoding:`async`}),');
 js = js.replace('src:`/shop/power-chords.png`', 'src:`/product-artwork/power-chords.jpg`');
 const snotRelease = 'artistSlug:`the-snot-rockets`,type:`EP`,releaseDate:`Coming Soon`,status:`Coming Soon`';
 if (!js.includes(snotRelease)) throw new Error('Snot Rockets release entry was not found');

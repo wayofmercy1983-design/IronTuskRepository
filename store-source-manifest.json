@@ -1,5 +1,5 @@
 {
-  "build.py": "c6f50a99fb9ec1d2feb84f33bd090db2f618f5f6581b2f028b7ab484820c4eb0",
+  "build.py": "5bc63ec24ff648d069ef7c7c3e3194ca2f09456bcec963b9537d1eeb4d268a1b",
   "dist/assets/thomas-homepage-restored.jpg": "ca6b61ba684dd617c4482b0eb680478d110112a37770f24208bf729ee521f5d9",
   "functions/customer-account.mjs": "acffadf826eec6e303056e3980170b5d543da92555687b9ec0567020c38d2016",
   "functions/kunaki-shipping-options.mjs": "ebcaf17eb569205fb3a58e670efc3be66692292ffb1ae2b80c8074ff8f963710",
@@ -19,7 +19,7 @@
   "recover_assets.py": "715c338d8d3fa59fd1b4af13fea872819091c947ac70f78d3e2e78a2b64f59f6",
   "source/assets-sha256.json": "c4c274c495e12ef92ced0959bad339b197424b0055b9fed6e6273890ee3eb49f",
   "source/assets.json": "a376acecb893cc234f68bdf5b8e2e49e1dba19001f096f25cfbb045748fcffe8",
-  "source/catalog.json": "1552d3cf40252ba7a6f65d412befb65b8bbd76a6513e8a5738d10208acdad6fe",
+  "source/catalog.json": "61355e5d1b81c1cb1b7f7715bd7a209c86a082cc7b68342588793e33f66aa09e",
   "source/customer-account.js": "b3597cffafc8ed12bbafc6e96af009612e71e3747c028e0e8f4881bd51dab9bd",
   "source/customer-callback.bundle.js": "ec19647fef8eaa99292cdc5ce80c6c474140110761797c899e1bf3874504435a",
   "source/customer-callback.js": "451107a384f9726af08c5a0732193dc4900393795288c544017e5930c7e3d3a8",
@@ -68,7 +68,7 @@
   "tests/kunaki-products.test.mjs": "da30473be6fd5e7bc77a2d10fb6a7ecbbe358ea5e06fbdc9ea9e60e0bd4095ba",
   "tests/product-sync.test.mjs": "5f632fa0020709ceba028cc8469e645396835dc14dc7f315b8c36454c4f5a982",
   "tests/quarter.test.mjs": "c988f3d8988c4a0a953808acb9ac7f4321144aeb5d6678ea68bbaa47b2e28f87",
-  "tests/store.test.mjs": "315b9e9401cfcab8ffb28249ecb7736cdfa34b0da18ca203e7811f614f7e4872",
+  "tests/store.test.mjs": "db0bcdd62f8bca669b3fb1bafc0beca8b3b4739a3c80df043c205ae04fedf8e2",
   "tests/stripe-gross.test.mjs": "9bb5e4dda3170cbccf2a74e0b299465e5724d9f62b1d5918391ef396c7077384",
   "tests/stripe-royalties.test.mjs": "ad7cc7d36a3ea1f30709e519540d67f462c2d1be6fbe4adb981e75d887f34f8a",
   "tests/team-access.test.mjs": "518dd32ee23356838b410ba8036a1dac860e4c9edb604ee61edc2e3b0b7bbdb3"

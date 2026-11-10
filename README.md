@@ -2,9 +2,11 @@
 
 Netlify builds the verified snapshot in `iron-tusk-store-source.zip` using `python3 restore-store.py`, publishes `restored-store/dist`, and packages `restored-store/functions`. The older React files in `src/` are retained for reference; `npm run build` does not build the deployed store.
 
-The snapshot preserves the live 17-product Stripe cart, server-authoritative pricing, customer-paid shipping, payment verification, durable orders, fulfillment safeguards, artist pages and images, and private Iron Tusk One manager.
+The snapshot preserves the live 18-product Stripe cart, server-authoritative pricing, customer-paid shipping, payment verification, durable orders, fulfillment safeguards, artist pages and images, and private Iron Tusk One manager.
 
 ## Product connection
+
+- Bone and the Strangels, *Ode to RFK Jr.* (ITR-012), CD: `PX00YPHI7O`, $5 plus shipping.
 
 - Thomas Ate the Cat, *Power Chords and Other Nonsense*, CD: `PX00IMM4M3`, $16 plus shipping.
 - Without, *Self Titled*, vinyl: `PX00H4Y785`, $50 plus shipping.
