@@ -13,8 +13,12 @@ function StoreReleasePage() {
       j.jsxs('div', {children: [
         j.jsx('h1', {children: release.title}),
         j.jsx(k, {to: '/artists/' + artist.slug, children: artist.name}),
-        j.jsx('p', {children: release.type + ' · ' + release.releaseDate}),
+        j.jsx('p', {children: [release.type, release.releaseDate, release.catalogNumber].filter(Boolean).join(' · ')}),
         j.jsx('p', {children: release.description}),
+        release.audioPreview && j.jsxs('section', {children: [
+          j.jsx('h2', {children: 'Listen to a preview'}),
+          j.jsx('audio', {controls: true, preload: 'none', src: release.audioPreview, 'aria-label': 'Preview of ' + release.title})
+        ]}),
         products.length > 0 && j.jsxs('section', {'aria-label': 'Choose a format', children: [
           j.jsx('h2', {children: 'Choose a format'}),
           ...products.map(product => j.jsx(k, {

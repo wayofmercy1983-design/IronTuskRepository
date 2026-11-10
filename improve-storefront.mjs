@@ -45,6 +45,19 @@ export function getData(bundle, catalog, artwork) {
         cover: '/product-artwork/' + artwork[product.title], links: {}});
     }
   }
+  releases.unshift({
+    id: Math.max(...releases.map(item => item.id)) + 1,
+    title: 'Ode to RFK Jr.',
+    artistSlug: 'bone-and-the-strangels',
+    type: 'Single',
+    releaseDate: 'November 9, 2026',
+    status: 'Released',
+    catalogNumber: 'ITR-012',
+    description: 'A single from Bone and the Strangels.',
+    cover: '/release-media/ode-to-rfk-jr-cover.jpg',
+    audioPreview: '/release-media/ode-to-rfk-jr-preview.wav',
+    links: {},
+  });
   for (const release of releases) {
     release.slug = slug(release.title);
     if (artwork[release.title]) release.cover = '/product-artwork/' + artwork[release.title];
@@ -136,8 +149,12 @@ export function createPages(data, {preview = false} = {}) {
   }
   for (const release of data.releases) {
     const artist = data.artists.find(a=>a.slug===release.artistSlug);
-    add(releasePath(release), release.title + ' by ' + artist.name, `Explore ${release.title} by ${artist.name}. Find release information and available physical formats from Iron Tusk Records.`,
-      `<img src="${escape(release.cover)}" alt="${escape(release.title)}"><p><a href="/artists/${artist.slug}">${escape(artist.name)}</a> · ${escape(release.type)} · ${escape(release.releaseDate)}</p><p>${escape(release.description)}</p>${formatLinks(release,data)}<p>Shipping is calculated for your full order in the cart.</p>`,
+    const formats = formatLinks(release, data);
+    const previewPlayer = release.audioPreview ? `<h2>Listen to a preview</h2><audio controls preload="none" src="${escape(release.audioPreview)}" aria-label="Preview of ${escape(release.title)}"></audio>` : '';
+    const catalogNumber = release.catalogNumber ? ` · ${escape(release.catalogNumber)}` : '';
+    const details = release.audioPreview ? 'Listen to a preview from Iron Tusk Records.' : 'Find release information and available physical formats from Iron Tusk Records.';
+    add(releasePath(release), release.title + ' by ' + artist.name, `Explore ${release.title} by ${artist.name}. ${details}`,
+      `<img src="${escape(release.cover)}" alt="${escape(release.title)}"><p><a href="/artists/${artist.slug}">${escape(artist.name)}</a> · ${escape(release.type)} · ${escape(release.releaseDate)}${catalogNumber}</p><p>${escape(release.description)}</p>${previewPlayer}${formats}${release.audioPreview && !formats ? '' : '<p>Shipping is calculated for your full order in the cart.</p>'}`,
       {image:release.cover, entity:{'@type':'MusicAlbum', name:release.title, byArtist:{'@type':artist.slug === 'eddie-michaels' ? 'Person':'MusicGroup', name:artist.name}, url:origin + releasePath(release), image:origin + release.cover}});
   }
   return pages;
@@ -172,6 +189,7 @@ export function improveStorefront() {
   if (!artwork) throw new Error('Missing product artwork mapping');
   const catalog = JSON.parse(fs.readFileSync(path.join(root, 'restored-store/source/catalog.json'), 'utf8'));
   const data = getData(original, catalog, artwork);
+  fs.cpSync(path.join(root, 'release-media'), path.join(dist, 'release-media'), {recursive: true});
   const pages = createPages(data, {preview: !!process.env.CONTEXT && process.env.CONTEXT !== 'production'});
   const runtimePages = Object.fromEntries(Object.entries(pages).map(([url, {content, heading, ...page}]) => [url, page]));
   const bundle = patchBundle(original, data, runtimePages);

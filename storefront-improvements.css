@@ -17,6 +17,7 @@
 .store-static article {margin: 24px 0;}
 .store-static img {max-width: 300px; width: 100%; height: auto;}
 .store-static h1 {font-size: clamp(2rem, 5vw, 3.5rem);}
+.store-release-header audio, .store-static audio {max-width: 100%;}
 @media(max-width: 650px) {
   .store-release-header {grid-template-columns: 1fr; gap: 22px;}
   .store-release-header > img {max-width: 380px; margin: auto;}

@@ -64,7 +64,8 @@ test('sitemap and robots expose public catalog and exclude transactional and pri
   assert.match(read('robots.txt'), /Sitemap: https:\/\/irontuskrecords.com\/sitemap.xml/);
   const sitemap = read('sitemap.xml');
   assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
-  assert.equal((sitemap.match(/<loc>/g)||[]).length, 25);
+  assert.equal((sitemap.match(/<loc>/g)||[]).length, 26);
+  assert.ok(sitemap.includes('https://irontuskrecords.com/release/ode-to-rfk-jr/'));
   for (const privateRoute of ['/cart','/account','/one','/404']) assert.ok(!sitemap.includes('irontuskrecords.com'+privateRoute+'/'));
   assert.match(read('cart/index.html'), /name="robots" content="noindex, follow"/);
   assert.match(read('404.html'), /name="robots" content="noindex, follow"/);
@@ -103,4 +104,17 @@ test('confirmed dispatch time is distinct from customer-selected delivery time',
   assert.match(shipping, /Delivery time depends on the shipping method you select/);
   assert.ok(bundle.includes('Orders ship in 2–3 business days'));
   assert.ok(!bundle.includes('CDs and vinyl ship once manufacturing is complete.'));
+});
+
+test('ITR-012 links the artist and release to a playable preview without a physical offer', () => {
+  const release = data.releases.find(item => item.catalogNumber === 'ITR-012');
+  const detail = read('release/ode-to-rfk-jr/index.html');
+  assert.equal(release.artistSlug, 'bone-and-the-strangels');
+  assert.ok(read('releases/index.html').includes('/release/ode-to-rfk-jr'));
+  assert.ok(read('artists/bone-and-the-strangels/index.html').includes('/release/ode-to-rfk-jr'));
+  assert.ok(detail.includes(`<audio controls preload="none" src="${release.audioPreview}"`));
+  assert.ok(fs.existsSync(path.join(dist, release.audioPreview)));
+  assert.ok(fs.existsSync(path.join(dist, release.cover)));
+  assert.ok(!detail.includes('href="/shop#'));
+  assert.ok(!catalog.some(item => item.title === release.title));
 });
