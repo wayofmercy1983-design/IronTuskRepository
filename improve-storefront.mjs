@@ -97,6 +97,16 @@ export function patchBundle(bundle, data, pageInfo) {
   replace('(0,j.jsx)(`h2`,{children:t.title}),(0,j.jsx)(`p`,{className:`shop-product-format`',
     '(0,j.jsx)(`h2`,{children:(0,j.jsx)(k,{to:`/release/${storeReleaseForProduct(t).slug}`,children:t.title})}),(0,j.jsx)(`p`,{className:`shop-product-format`');
   replace('children:[`Order total: `,Fr(ne)]', 'children:[te?`Items + shipping: `:`Subtotal before shipping: `,Fr(ne)]');
+  replace('function jr(){let{addToCart:e,totalItems:t}=rr()', 'function jr(){const [offersNow]=useStoreClock();let{addToCart:e,totalItems:t}=rr()');
+  replace('(0,j.jsx)(`section`,{className:`shop-products`,', 'decemberOffersActive(offersNow)&&j.jsx(StoreDecemberOffers,{}),(0,j.jsx)(`section`,{className:`shop-products`,');
+  replace('function Ir(){let{cart:e,', 'function Ir(){const [offersNow,syncOffersClock]=useStoreClock();let{cart:e,');
+  replace('C=S.reduce((e,t)=>e+t.price*t.quantity,0),te=s.find(e=>e.description===l),ne=C+Number(te?.price||0)',
+    'offerPricing=priceDecemberCart(S,offersNow),C=offerPricing.itemsCents/100,te=s.find(e=>e.description===l),totalCents=offerPricing.subtotalCents+Math.round(Number(te?.price||0)*100),ne=totalCents/100');
+  replace('children:Fr(C)})]}),te&&', 'children:Fr(C)})]}),...offerPricing.discounts.map(StoreDiscountLine),te&&');
+  replace('let n=[...t.options||[]].sort(', 'syncOffersClock(t.pricingTime);let n=[...t.options||[]].sort(');
+  replace('shippingDescription:l,requestId:_.current', 'shippingDescription:l,requestId:_.current,expectedTotal:totalCents');
+  replace('if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);',
+    'if(t.status===409){syncOffersClock(n.pricingTime);c([]);u(``);_.current=crypto.randomUUID()}if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);');
   const oldReleaseStart = js.indexOf('function Dr(){');
   const oldReleaseEnd = js.indexOf('function Or(){', oldReleaseStart);
   if (oldReleaseStart < 0 || oldReleaseEnd < 0) throw new Error('Missing release component');
@@ -194,7 +204,10 @@ export function improveStorefront() {
   fs.cpSync(path.join(root, 'release-media'), path.join(dist, 'release-media'), {recursive: true});
   const pages = createPages(data, {preview: !!process.env.CONTEXT && process.env.CONTEXT !== 'production'});
   const runtimePages = Object.fromEntries(Object.entries(pages).map(([url, {content, heading, ...page}]) => [url, page]));
-  const bundle = patchBundle(original, data, runtimePages);
+  const offers = fs.readFileSync(path.join(root, 'restored-store/source/december-offers.mjs'));
+  const offersName = 'december-offers-' + crypto.createHash('sha256').update(offers).digest('hex').slice(0,12) + '.js';
+  fs.writeFileSync(path.join(dist, 'assets', offersName), offers);
+  const bundle = `import {decemberOffersActive,priceDecemberCart} from '/assets/${offersName}';\n` + patchBundle(original, data, runtimePages);
   const name = 'store-' + crypto.createHash('sha256').update(bundle).digest('hex').slice(0,12) + '.js';
   fs.writeFileSync(path.join(dist, 'assets', name), bundle);
   const css = fs.readFileSync(path.join(here, 'storefront-improvements.css'), 'utf8');

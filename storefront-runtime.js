@@ -1,5 +1,36 @@
 // Compiled into the preserved storefront by improve-storefront.mjs.
 // k, j, x, ht, bt, _r, yr and Ar are the existing app's router, React and data.
+function useStoreClock() {
+  const [now, setNow] = x.useState(Date.now);
+  const offset = x.useRef(0);
+  x.useEffect(() => {
+    const refresh = () => setNow(Date.now() + offset.current);
+    const timer = setInterval(refresh, 10000);
+    window.addEventListener('focus', refresh);
+    return () => { clearInterval(timer); window.removeEventListener('focus', refresh); };
+  }, []);
+  function sync(serverTime) {
+    if (!Number.isFinite(serverTime)) return;
+    offset.current = serverTime - Date.now();
+    setNow(serverTime);
+  }
+  return [now, sync];
+}
+
+function StoreDecemberOffers() {
+  return j.jsxs('section', {className:'store-december-offers', 'aria-labelledby':'december-specials-title', children:[
+    j.jsx('h2', {id:'december-specials-title', children:'December specials'}),
+    j.jsxs('p', {children:[j.jsx('strong', {children:'CDs: '}), 'Buy three CDs and get the cheapest CD half off.']}),
+    j.jsxs('p', {children:[j.jsx('strong', {children:'Vinyl: '}), 'Buy two full-size vinyl records and get the cheapest 7-inch in your cart half off.']}),
+    j.jsx('p', {children:'December 1–31, Eastern time. Each offer applies once per order. Discounts apply automatically. Shipping is separate.'}),
+  ]});
+}
+
+function StoreDiscountLine(discount) {
+  const label = discount.offer === 'cd' ? 'December CD special: ' : 'December 7-inch special: ';
+  return j.jsxs('p', {children:[label, j.jsx('strong', {children:'−' + Fr(discount.cents / 100)})]}, discount.offer);
+}
+
 function StoreReleasePage() {
   const {slug} = bt();
   const release = yr.find(item => item.slug === slug);

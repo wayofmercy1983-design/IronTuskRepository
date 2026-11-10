@@ -132,3 +132,11 @@ test('Tribal uses the replacement shop ID and updates saved carts', () => {
   const result = vm.runInNewContext(bundle.slice(start, end) + '\nstoreRestoreCart(items)', {items:input});
   assert.deepEqual(JSON.parse(JSON.stringify(result)), [{...input[0],id:'PX00ZKO739'}, input[1]]);
 });
+
+test('the shop and cart use the same December price rules as the server', () => {
+  const offers = bundle.match(/from '\/assets\/(december-offers-[a-f0-9]+\.js)'/)[1];
+  assert.equal(read('assets/' + offers), fs.readFileSync(path.join(root, 'restored-store/source/december-offers.mjs'), 'utf8').replace(/\r\n/g,'\n'));
+  assert.match(bundle, /decemberOffersActive\(offersNow\)&&j.jsx\(StoreDecemberOffers/);
+  assert.match(bundle, /offerPricing=priceDecemberCart\(S,offersNow\)/);
+  assert.match(bundle, /shippingDescription:l,requestId:_.current,expectedTotal:totalCents/);
+});
