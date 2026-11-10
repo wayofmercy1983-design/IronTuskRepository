@@ -78,6 +78,8 @@ export function patchBundle(bundle, data, pageInfo) {
   replace('function Cr({artist:e}){let t=vt();return(0,j.jsxs)(`article`,{className:`artist-card artist-link`,onClick:()=>{M(),setTimeout(()=>{t(`/artists/${e.slug}`)},40)},style:{cursor:`pointer`},',
     'function Cr({artist:e}){return(0,j.jsxs)(k,{to:`/artists/${e.slug}`,"aria-label":`View ${e.name}`,className:`artist-card artist-link`,onClick:M,');
   replace('className:`artist-previews`,children:[', 'className:`artist-previews`,id:`artist-previews`,tabIndex:-1,children:[');
+  replace('JSON.parse(window.localStorage.getItem(`iron-tusk-cart`)||`[]`);return Array.isArray(e)?e:[]',
+    'JSON.parse(window.localStorage.getItem(`iron-tusk-cart`)||`[]`);return storeRestoreCart(e)');
   replace('(0,j.jsx)(`h2`,{children:e.title}),n&&', '(0,j.jsx)(`h2`,{children:(0,j.jsx)(k,{to:`/release/${e.slug}`,children:e.title})}),n&&');
   replace('className:`release-links`,children:[e.links.spotify&&',
     'className:`release-links`,children:[storeProductsFor(e).length>0&&(0,j.jsx)(k,{to:`/release/${e.slug}`,className:`listen-button`,children:`View formats`}),e.links.spotify&&');

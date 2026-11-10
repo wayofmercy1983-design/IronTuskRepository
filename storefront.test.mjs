@@ -119,3 +119,16 @@ test('ITR-012 links the artist, $5 CD offer and playable preview to a single rel
   assert.ok(read('shop/index.html').includes('id="product-PX00YPHI7O"'));
   assert.equal(data.releases.filter(item => item.title === release.title).length, 1);
 });
+
+test('Tribal uses the replacement shop ID and updates saved carts', () => {
+  assert.ok(read('release/tribal/index.html').includes('href="/shop#product-PX00ZKO739">CD · ITR-006 · $16.00 + shipping'));
+  const shop = read('shop/index.html');
+  assert.ok(shop.includes('id="product-PX00ZKO739"'));
+  assert.ok(!shop.includes('id="product-PX00AQ4XD2"'));
+  assert.match(bundle, /localStorage.getItem\(`iron-tusk-cart`\)\|\|`\[\]`\);return storeRestoreCart\(e\)/);
+  const start = bundle.indexOf('function storeRestoreCart(');
+  const end = bundle.indexOf('function storeProductsFor(', start);
+  const input = [{id:'PX00AQ4XD2',quantity:2,price:16}, {id:'PX00YPHI7O',quantity:1,price:5}];
+  const result = vm.runInNewContext(bundle.slice(start, end) + '\nstoreRestoreCart(items)', {items:input});
+  assert.deepEqual(JSON.parse(JSON.stringify(result)), [{...input[0],id:'PX00ZKO739'}, input[1]]);
+});

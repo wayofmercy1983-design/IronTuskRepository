@@ -7,6 +7,7 @@ The snapshot preserves the live 18-product Stripe cart, server-authoritative pri
 ## Product connection
 
 - Bone and the Strangels, *Ode to RFK Jr.* (ITR-012), CD: `PX00YPHI7O`, $5 plus shipping.
+- ONG, *Tribal* (ITR-006), CD: `PX00ZKO739`, $16 plus shipping.
 
 - Thomas Ate the Cat, *Power Chords and Other Nonsense*, CD: `PX00IMM4M3`, $16 plus shipping.
 - Without, *Self Titled*, vinyl: `PX00H4Y785`, $50 plus shipping.

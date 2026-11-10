@@ -63,6 +63,11 @@ function storeProductId(product) {
   return 'product-' + product.id;
 }
 
+function storeRestoreCart(items) {
+  if (!Array.isArray(items)) return [];
+  return items.map(item => item?.id === 'PX00AQ4XD2' ? {...item, id: 'PX00ZKO739'} : item);
+}
+
 function storeProductsFor(release) {
   const normal = value => value.toLowerCase().replace(/[’']/g, '');
   const artist = _r.find(item => item.slug === release.artistSlug);
