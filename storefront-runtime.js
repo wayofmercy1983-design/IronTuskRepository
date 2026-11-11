@@ -164,3 +164,20 @@ function useStorePageInfo() {
     });
   }, [pathname, hash]);
 }
+
+
+function StoreSignup() {
+  const {pathname} = ht();
+  if (pathname !== '/') return null;
+  return j.jsxs('section', {id:'join-the-herd', className:'store-signup', 'aria-label':'Join the Iron Tusk Records mailing list', children:[
+    j.jsx('iframe', {
+      title:'Join the Herd — Iron Tusk Records signup',
+      src:'https://528cb4e6.sibforms.com/v2/serve/MUIFAEZBBEDUPef4tXiGVK7JLIcdnnlMcSJQ0-pf46RWp9y8X9aKEb_k71uUr9GA-af8UGVBIpgNnaxSXh5Aq8m3OnPZV3Cj-Sq-UVh5kQpDG-4djt0NnX2-0kxh3Z73o7S2tOs6dvNERsMb5wg2nOyC_zUdeuAjf0zclLbvj8y14G-zgUAt8gzVEEhIdQUJ3lOG5z-sIsWUJUniNw==',
+      width:640, height:660, loading:'lazy',
+    }),
+    j.jsx('p', {children:j.jsx('a', {
+      href:'https://528cb4e6.sibforms.com/serve/MUIFAEZBBEDUPef4tXiGVK7JLIcdnnlMcSJQ0-pf46RWp9y8X9aKEb_k71uUr9GA-af8UGVBIpgNnaxSXh5Aq8m3OnPZV3Cj-Sq-UVh5kQpDG-4djt0NnX2-0kxh3Z73o7S2tOs6dvNERsMb5wg2nOyC_zUdeuAjf0zclLbvj8y14G-zgUAt8gzVEEhIdQUJ3lOG5z-sIsWUJUniNw==',
+      target:'_blank', rel:'noopener noreferrer', children:'Open the signup form in a new tab',
+    })}),
+  ]});
+}

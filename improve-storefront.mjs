@@ -110,6 +110,8 @@ export function patchBundle(bundle, data, pageInfo) {
   replace('shippingDescription:l,requestId:_.current', 'shippingDescription:l,requestId:_.current,expectedTotal:totalCents,paymentMethod');
   replace('if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);',
     'if(t.status===409){syncOffersClock(n.pricingTime);c([]);u(``);_.current=crypto.randomUUID()}if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);');
+  replace('(0,j.jsx)(sr,{})]})}', '(0,j.jsx)(StoreSignup,{}),(0,j.jsx)(sr,{})]})}');
+  replace('children:`Shipping and order help`})', 'children:`Shipping and order help`}),(0,j.jsx)(A,{to:`/#join-the-herd`,children:`Join the Herd`})');
   const oldReleaseStart = js.indexOf('function Dr(){');
   const oldReleaseEnd = js.indexOf('function Or(){', oldReleaseStart);
   if (oldReleaseStart < 0 || oldReleaseEnd < 0) throw new Error('Missing release component');

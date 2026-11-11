@@ -26,3 +26,10 @@
   .store-release-header > img {max-width: 380px; margin: auto;}
   .store-release-page, .store-not-found {padding: 18px; margin: 16px auto;}
 }
+
+/* The Brevo form keeps email consent and double confirmation in Brevo. */
+.store-signup { background:#3b1b59; padding:32px 16px 24px; scroll-margin-top:110px; }
+.store-signup iframe { display:block; width:100%; max-width:640px; height:660px; margin:0 auto; border:0; }
+.store-signup > p { text-align:center; margin:12px 0 0; }
+.store-signup > p a { color:#f3d773; text-decoration:underline; }
+@media(max-width:480px) { .store-signup { padding:16px 0 24px; } .store-signup iframe { height:740px; } }
