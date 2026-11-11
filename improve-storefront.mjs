@@ -146,6 +146,14 @@ export function createPages(data, {preview = false} = {}) {
   const artistLinks = data.artists.map(a => `<article><h2><a href="/artists/${a.slug}">${escape(a.name)}</a></h2><p>${escape(a.genre || '')} · ${escape(a.hometown)}</p></article>`).join('');
   const releases = data.releases.map(r => `<article><h2>${releaseLink(r)}</h2><p>${escape(data.artists.find(a=>a.slug===r.artistSlug).name)} · ${escape(r.type)} · ${escape(r.releaseDate)}</p><p>${escape(r.description)}</p>${formatLinks(r,data)}</article>`).join('');
   add('/', 'Independent music and artists', 'Discover independent artists, albums, EPs and singles from Iron Tusk Records, an independent record label based in Hamilton, Ohio.', '<h2>Thomas Ate the Cat</h2><p>Alternative rock from Michigan.</p><a href="/artists/thomas-ate-the-cat">Explore Thomas Ate the Cat</a><h2>Featured Artists</h2>' + artistLinks);
+  const signupPath = '/join-the-herd';
+  const signupEmbed = 'https://528cb4e6.sibforms.com/v2/serve/MUIFAEZBBEDUPef4tXiGVK7JLIcdnnlMcSJQ0-pf46RWp9y8X9aKEb_k71uUr9GA-af8UGVBIpgNnaxSXh5Aq8m3OnPZV3Cj-Sq-UVh5kQpDG-4djt0NnX2-0kxh3Z73o7S2tOs6dvNERsMb5wg2nOyC_zUdeuAjf0zclLbvj8y14G-zgUAt8gzVEEhIdQUJ3lOG5z-sIsWUJUniNw==';
+  const signupLink = signupEmbed.replace('/v2/serve/', '/serve/');
+  add(signupPath, 'Join the Herd', 'Sign up for Iron Tusk Records newsletter updates on new music, artist news, releases, and exclusive offers.',
+    '<section class="store-signup" aria-label="Newsletter signup"><iframe title="Join the Herd newsletter signup" src="' + escape(signupEmbed) + '" width="640" height="660"></iframe><p><a href="' + escape(signupLink) + '">Open the signup form directly</a></p></section>');
+  pages[signupPath].title = 'Join the Herd | Iron Tusk Records Newsletter Signup';
+  pages[signupPath].standalone = true;
+
   add('/artists', 'Artists', 'Meet Thomas Ate the Cat, ONG, Eddie Michaels, The Snot Rockets, Bone and the Strangels, and Without on Iron Tusk Records.', artistLinks);
   add('/releases', 'Releases', 'Explore albums, EPs and singles from the Iron Tusk Records artist roster, with links to music and physical formats.', releases);
   add('/shop', 'Shop the catalog', 'Browse CDs, vinyl and singles from Iron Tusk Records artists. View format prices and calculate shipping for your full order in the cart.',
@@ -222,7 +230,9 @@ export function improveStorefront() {
   for (const [route, page] of Object.entries(pages)) {
     const output = route === '/404' ? path.join(dist, '404.html') : path.join(dist, route === '/' ? '' : route.slice(1), 'index.html');
     fs.mkdirSync(path.dirname(output), {recursive:true});
-    fs.writeFileSync(output, renderPage(html, page));
+    // Keep the static signup visible without mounting the store application.
+    const template = page.standalone ? html.replace(/<script\b[^>]*src="\/assets\/store-[a-f0-9]+\.js"[^>]*>\s*<\/script>/, '') : html;
+    fs.writeFileSync(output, renderPage(template, page));
   }
   const sitemapPaths = Object.keys(pages).filter(url=>!['/cart','/404'].includes(url));
   fs.writeFileSync(path.join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + sitemapPaths.map(url=>`  <url><loc>${origin}${url === '/' ? '/' : url + '/'}</loc></url>`).join('\n') + '\n</urlset>\n');
