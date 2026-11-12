@@ -98,14 +98,15 @@ function StoreShippingPage() {
 }
 
 function storeProductId(product) {
-  if (product.id === 'PX00Z925MY') return 'snot-rockets-vinyl';
-  if (product.id === 'PX00ZUDROB') return 'snot-rockets-cd';
+  if (product.id === 'PX00I0GP08') return 'snot-rockets-vinyl';
+  if (product.id === 'PX00V4KEMX') return 'snot-rockets-cd';
   return 'product-' + product.id;
 }
 
 function storeRestoreCart(items) {
   if (!Array.isArray(items)) return [];
-  return items.map(item => item?.id === 'PX00AQ4XD2' ? {...item, id: 'PX00ZKO739'} : item);
+  const replacements = {'PX00AQ4XD2':'PX00ZKO739', 'PX00ZUDROB':'PX00V4KEMX', 'PX00Z925MY':'PX00I0GP08'};
+  return items.map(item => replacements[item?.id] ? {...item, id: replacements[item.id], ...(item.id === 'PX00Z925MY' ? {price:20} : {})} : item);
 }
 
 function storeProductsFor(release) {

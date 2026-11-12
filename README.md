@@ -6,6 +6,9 @@ The snapshot preserves the live 18-product Stripe cart, server-authoritative pri
 
 ## Product connection
 
+- The Snot Rockets CD (ITR-009) is `PX00V4KEMX`, $8 plus shipping. Retired CD `PX00ZUDROB` cannot start new checkouts; saved browser carts upgrade to the replacement. Replacement 7-inch vinyl is `PX00I0GP08`, $20 plus shipping; retired vinyl `PX00Z925MY` is also upgraded in saved carts and rejected for new checkouts. Historical orders retain their original IDs.
+- The EP landing page is `/snot-rockets/` and its primary purchase link selects the CD.
+
 - Bone and the Strangels, *Ode to RFK Jr.* (ITR-012), CD: `PX00YPHI7O`, $5 plus shipping.
 - ONG, *Tribal* (ITR-006), CD: `PX00ZKO739`, $16 plus shipping.
 
@@ -61,7 +64,7 @@ node --test storefront.test.mjs
 CI builds these static additions without downloading the immutable media bundle.
 The production build still verifies and recovers the original media. A changed
 upstream snapshot must update the explicitly checked transforms; do not silently
-skip a missing transform. The owner confirmed that orders ship in 2–3 business days
+skip a missing transform. The owner confirmed that orders ship in 2â€“3 business days
 and delivery time depends on the customer-selected method. Return policies,
 edition limits and TBA dates still require confirmed business information.
 
@@ -87,7 +90,7 @@ blob persistence still needs verification after an approved deployment.
 ## Statement period defaults
 
 New royalty entries select the current calendar quarter and year using the owner's
-local date (October–December is Q4). The period remains editable for late reports.
+local date (Octoberâ€“December is Q4). The period remains editable for late reports.
 Editing an existing royalty preserves its original accounting period, even if blank.
 The active manager bundle imports `source/one-dist/quarter.js`; three tests cover all
 months, quarter/year boundaries and historical periods. No stored records are migrated.

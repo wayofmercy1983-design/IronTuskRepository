@@ -90,7 +90,7 @@ export function patchBundle(bundle, data, pageInfo) {
   replace('Add releases to your cart. Shipping is calculated for the full order at checkout.', 'Orders ship in 2–3 business days. Delivery time depends on the shipping method you select. Shipping is calculated for your full order in the cart.');
   replace('Enter your address to calculate shipping for the whole cart.', 'Orders ship in 2–3 business days. Delivery time depends on the shipping method you select. Enter your address to see shipping options for the whole cart.');
   replace('(0,j.jsx)(A,{to:`/contact`,onClick:M,children:`Contact`})', '(0,j.jsx)(A,{to:`/contact`,onClick:M,children:`Contact`}),(0,j.jsx)(A,{to:`/shipping`,children:`Shipping and order help`})');
-  replace('className:`shop-card`,id:t.id===`PX00Z925MY`?`snot-rockets-vinyl`:t.id===`PX00ZUDROB`?`snot-rockets-cd`:undefined,',
+  replace('className:`shop-card`,id:t.id===`PX00I0GP08`?`snot-rockets-vinyl`:t.id===`PX00V4KEMX`?`snot-rockets-cd`:undefined,',
     'className:`shop-card`,id:storeProductId(t),tabIndex:-1,');
   replace('className:`shop-buy-button`,type:`button`,onClick:()=>{e({id:t.id',
     'className:`shop-buy-button`,type:`button`,"aria-label":`Add ${t.artist} — ${t.title} (${t.format}) to cart`,onClick:()=>{e({id:t.id');
@@ -123,7 +123,7 @@ export function patchBundle(bundle, data, pageInfo) {
 }
 
 const navigation = '<nav aria-label="Main navigation">' + [['/','Home'], ['/artists','Artists'], ['/releases','Releases'], ['/shop','Shop'], ['/about','About'], ['/contact','Contact'], ['/shipping','Shipping and order help']].map(([url,label]) => `<a href="${url}">${label}</a>`).join(' ') + '</nav>';
-const productId = item => item.id === 'PX00Z925MY' ? 'snot-rockets-vinyl' : item.id === 'PX00ZUDROB' ? 'snot-rockets-cd' : 'product-' + item.id;
+const productId = item => item.id === 'PX00I0GP08' ? 'snot-rockets-vinyl' : item.id === 'PX00V4KEMX' ? 'snot-rockets-cd' : 'product-' + item.id;
 const productsFor = (release, data) => data.catalog.filter(item => item.artist === data.artists.find(a => a.slug === release.artistSlug)?.name && normal(item.title) === normal(release.title));
 const releasePath = release => '/release/' + release.slug;
 const releaseLink = release => `<a href="${releasePath(release)}">${escape(release.title)}</a>`;

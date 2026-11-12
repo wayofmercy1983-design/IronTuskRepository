@@ -36,7 +36,7 @@ js = js.replace('src:`/shop/power-chords.png`', 'src:`/product-artwork/power-cho
 const snotRelease = 'artistSlug:`the-snot-rockets`,type:`EP`,releaseDate:`Coming Soon`,status:`Coming Soon`';
 if (!js.includes(snotRelease)) throw new Error('Snot Rockets release entry was not found');
 js = js.replace(snotRelease, 'artistSlug:`the-snot-rockets`,type:`EP`,releaseDate:`October 30, 2026`,status:`Released`');
-js = js.replace('className:`shop-card`,children:[', 'className:`shop-card`,id:t.id===`PX00Z925MY`?`snot-rockets-vinyl`:t.id===`PX00ZUDROB`?`snot-rockets-cd`:undefined,children:[');
+js = js.replace('className:`shop-card`,children:[', 'className:`shop-card`,id:t.id===`PX00I0GP08`?`snot-rockets-vinyl`:t.id===`PX00V4KEMX`?`snot-rockets-cd`:undefined,children:[');
 js = js.replace('CDs and vinyl ship as soon as Kunaki manufactures them.', 'CDs and vinyl ship once manufacturing is complete.');
 js = js.replace('Music available from Kunaki', 'Music available from Iron Tusk Records');
 js = js.replace('Kunaki could not calculate shipping.', 'Shipping could not be calculated.');

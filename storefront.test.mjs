@@ -17,6 +17,17 @@ const raw = fs.readFileSync(path.join(root,'restored-store/source/oct22-store.js
 const artwork = JSON.parse(bundle.match(/const productArtwork=(\{.*?\});function jr/s)[1]);
 const data = getData(raw, catalog, artwork);
 const pages = createPages(data);
+test('Snot Rockets landing page and saved carts lead to the replacement CD',()=>{
+ assert.equal(catalog.find(p=>p.id==='PX00V4KEMX').price,8);
+ assert.ok(!catalog.some(p=>p.id==='PX00ZUDROB'));
+ assert.ok(read('snot-rockets/index.html').includes('href="/shop#snot-rockets-cd">Get the CD'));
+ assert.ok(read('shop/index.html').includes('id="snot-rockets-cd"'));
+ const start=bundle.indexOf('function storeRestoreCart(');
+ const end=bundle.indexOf('function storeProductsFor(',start);
+ const items=[{id:'PX00ZUDROB',quantity:2,price:8},{id:'PX00Z925MY',quantity:1,price:18}];
+ const result=vm.runInNewContext(bundle.slice(start,end)+'\nstoreRestoreCart(items)',{items});
+ assert.deepEqual(JSON.parse(JSON.stringify(result)),[{...items[0],id:'PX00V4KEMX'},{...items[1],id:'PX00I0GP08',price:20}]);
+});
 const preservedAssets = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'restored-store/source/assets-sha256.json'), 'utf8'))));
 
 test('every physical offer retains its authoritative ID and price and has a release destination', () => {
@@ -64,7 +75,7 @@ test('sitemap and robots expose public catalog and exclude transactional and pri
   assert.match(read('robots.txt'), /Sitemap: https:\/\/irontuskrecords.com\/sitemap.xml/);
   const sitemap = read('sitemap.xml');
   assert.match(sitemap, /<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
-  assert.equal((sitemap.match(/<loc>/g)||[]).length, 26);
+  assert.equal((sitemap.match(/<loc>/g)||[]).length, Object.keys(pages).filter(route=>!['/cart','/404'].includes(route)).length);
   assert.ok(sitemap.includes('https://irontuskrecords.com/release/ode-to-rfk-jr/'));
   for (const privateRoute of ['/cart','/account','/one','/404']) assert.ok(!sitemap.includes('irontuskrecords.com'+privateRoute+'/'));
   assert.match(read('cart/index.html'), /name="robots" content="noindex, follow"/);
