@@ -17,6 +17,13 @@ function useStoreClock() {
   return [now, sync];
 }
 
+function StoreBlackFridayOffer() {
+  return j.jsxs('section', {className:'store-december-offers', children:[
+    j.jsx('h2', {children:'Black Friday · 10% off CDs'}),
+    j.jsx('p', {children:'Your CD discount applies automatically in the cart before shipping.'}),
+  ]});
+}
+
 function StoreDecemberOffers() {
   return j.jsxs('section', {className:'store-december-offers', 'aria-labelledby':'december-specials-title', children:[
     j.jsx('h2', {id:'december-specials-title', children:'December specials'}),
@@ -27,8 +34,8 @@ function StoreDecemberOffers() {
 }
 
 function StoreDiscountLine(discount) {
-  const label = discount.offer === 'cd' ? 'December CD special: ' : 'December 7-inch special: ';
-  return j.jsxs('p', {children:[label, j.jsx('strong', {children:'−' + Fr(discount.cents / 100)})]}, discount.offer);
+  const label = discount.offer === 'black-friday' ? 'Black Friday CD discount: ' : discount.offer === 'cd' ? 'December CD special: ' : 'December 7-inch special: ';
+  return j.jsxs('p', {children:[label, j.jsx('strong', {children:'−' + Fr(discount.cents / 100)})]}, discount.id);
 }
 
 function StoreCheckoutButtons({pending, disabled, total, onCheckout}) {

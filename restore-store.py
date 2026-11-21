@@ -6,6 +6,7 @@ data=(root/"iron-tusk-store-source.zip").read_bytes()
 assert hashlib.sha256(data).hexdigest()=="e44788d5bee37fba3e021be9bf07ff728de2fbeb70ff3d4798e12ba010124612", "Source checksum mismatch"
 with zipfile.ZipFile(io.BytesIO(data)) as archive:
  archive.extractall(root/"restored-store")
+(root/"restored-store/source/december-offers.mjs").write_bytes((root/"store-offers.mjs").read_bytes())
 if "--extract-only" not in sys.argv:
  env={**os.environ, "PYTHONUTF8":"1"}
  for name in ["recover_assets.py","build.py"]:
@@ -52,5 +53,11 @@ if "--extract-only" not in sys.argv:
  marker = "export const hash=value=>"
  assert backend.count(marker) == 1
  backend = backend.replace(marker, "for(const id of "+aliases+")products.set(id,products.get("+json.dumps(new_cd)+"));\n"+marker)
+ marker = "if(!discount)return"
+ assert backend.count(marker) == 1
+ backend = backend.replace(marker, "if(discount?.offer==='black-friday')return [stripeLine(product,quantity,product.cents-discount.unitDiscount,discount)];\n  "+marker)
+ marker = "const description=discount?"
+ assert backend.count(marker) == 1
+ backend = backend.replace(marker, "const description=discount?.offer==='black-friday'?'Black Friday: 10% off CDs before shipping':discount?")
  store_path.write_text(backend, encoding="utf-8")
  print("Snot Rockets CD ordering updated to "+new_cd)
