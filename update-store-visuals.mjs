@@ -24,6 +24,14 @@ for (const item of catalog) {
   if (!covers[item.title]) throw new Error(`Missing artwork for ${item.title}`);
 }
 fs.cpSync(path.join(root, 'public/product-artwork'), path.join(dist, 'product-artwork'), {recursive:true});
+const photoDirectory = path.join(root, 'restored-store/product-photos');
+const productPhotos = {};
+for (const file of fs.readdirSync(photoDirectory)) {
+  const id = path.basename(file, '.webp');
+  if (!catalog.some(item => item.id === id)) throw new Error(`Unknown product photo: ${file}`);
+  productPhotos[id] = '/product-photos/' + file;
+}
+fs.cpSync(photoDirectory, path.join(dist, 'product-photos'), {recursive:true});
 let html = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const oldBundle = html.match(/src="\/assets\/(store-[a-f0-9]+\.js)"/)?.[1];
 if (!oldBundle) throw new Error('Store bundle was not found');
@@ -31,7 +39,8 @@ let js = fs.readFileSync(path.join(dist, 'assets', oldBundle), 'utf8');
 const card = 'className:`shop-card`,children:[';
 if (js.split(card).length !== 2) throw new Error('Expected exactly one product card template');
 js = js.replace('function jr(){', `const productArtwork=${JSON.stringify(artwork)};function jr(){`);
-js = js.replace(card, card + '(0,j.jsx)(`img`,{className:`shop-product-artwork`,src:productArtwork[t.title],alt:`${t.artist} — ${t.title} artwork`,width:600,height:600,loading:`lazy`,decoding:`async`}),');
+js = js.replace('var Ar=', `const productPhotos=${JSON.stringify(productPhotos)};var Ar=`);
+js = js.replace(card, card + '(0,j.jsx)(`img`,{className:`shop-product-artwork`,src:productPhotos[t.id] || productArtwork[t.title],alt:`${t.artist} — ${t.title} (${t.format})`,width:600,height:600,loading:`lazy`,decoding:`async`}),');
 js = js.replace('src:`/shop/power-chords.png`', 'src:`/product-artwork/power-chords.jpg`');
 const snotRelease = 'artistSlug:`the-snot-rockets`,type:`EP`,releaseDate:`Coming Soon`,status:`Coming Soon`';
 if (!js.includes(snotRelease)) throw new Error('Snot Rockets release entry was not found');

@@ -11,6 +11,8 @@ if "--extract-only" not in sys.argv:
  env={**os.environ, "PYTHONUTF8":"1"}
  for name in ["recover_assets.py","build.py"]:
   subprocess.run([sys.executable,str(root/"restored-store"/name)],check=True,env=env)
+ with zipfile.ZipFile(root/"product-photos.zip") as photos:
+  photos.extractall(root/"restored-store/product-photos")
  subprocess.run(["node",str(root/"update-store-visuals.mjs")],check=True,env=env)
  subprocess.run(["node",str(root/"improve-storefront.mjs")],check=True,env=env)
 
@@ -31,6 +33,9 @@ if "--extract-only" not in sys.argv:
  bundle = (dist/"assets"/bundle_name).read_text(encoding="utf-8")
  assert old_cd in bundle
  bundle = bundle.replace(old_cd, new_cd)
+ photo = dist/"product-photos"/(old_cd+".webp")
+ if photo.exists():
+  photo.rename(photo.with_name(new_cd+".webp"))
  alias_marker = "const replacements = {"
  assert bundle.count(alias_marker) == 1
  bundle = bundle.replace(alias_marker, alias_marker + json.dumps(old_cd)+":"+json.dumps(new_cd)+"," + json.dumps("PX00ZUDR0B")+":"+json.dumps(new_cd)+",")
