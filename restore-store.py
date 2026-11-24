@@ -7,12 +7,12 @@ assert hashlib.sha256(data).hexdigest()=="e44788d5bee37fba3e021be9bf07ff728de2fb
 with zipfile.ZipFile(io.BytesIO(data)) as archive:
  archive.extractall(root/"restored-store")
 (root/"restored-store/source/december-offers.mjs").write_bytes((root/"store-offers.mjs").read_bytes())
+with zipfile.ZipFile(root/"product-photos.zip") as photos:
+ photos.extractall(root/"restored-store/product-photos")
 if "--extract-only" not in sys.argv:
  env={**os.environ, "PYTHONUTF8":"1"}
  for name in ["recover_assets.py","build.py"]:
   subprocess.run([sys.executable,str(root/"restored-store"/name)],check=True,env=env)
- with zipfile.ZipFile(root/"product-photos.zip") as photos:
-  photos.extractall(root/"restored-store/product-photos")
  subprocess.run(["node",str(root/"update-store-visuals.mjs")],check=True,env=env)
  subprocess.run(["node",str(root/"improve-storefront.mjs")],check=True,env=env)
 
