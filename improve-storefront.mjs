@@ -7,6 +7,12 @@ import {fileURLToPath} from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = here;
 const origin = 'https://irontuskrecords.com';
+const fundraiserSection = `<section id="support" aria-labelledby="fundraiser-heading" style="margin:2rem auto;padding:clamp(1rem,4vw,3rem);max-width:60rem;background:#281637;color:white;border-radius:1rem;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2rem">
+  <video src="/release-media/iron-tusk-fundraiser.mp4" controls playsinline preload="metadata" aria-label="Iron Tusk Records fundraiser video" width="360" height="640" style="display:block;width:min(100%,15rem);height:auto;border-radius:.6rem"></video>
+  <div style="max-width:28rem"><h2 id="fundraiser-heading">Support Iron Tusk Records</h2>
+  <p>Help us raise $2,500 to bring more CDs to fans and local record stores and promote our independent artists.</p>
+  <a href="https://gofund.me/78e614c91" style="display:inline-block;margin-top:.75rem;padding:.8rem 1.25rem;border-radius:.4rem;background:#f2c862;color:#20132b;font-weight:bold">Donate on GoFundMe</a></div>
+</section>`;
 const normal = value => value.toLowerCase().replace(/[’']/g, '');
 const slug = value => normal(value).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'})[char]);
@@ -110,7 +116,7 @@ export function patchBundle(bundle, data, pageInfo) {
   replace('shippingDescription:l,requestId:_.current', 'shippingDescription:l,requestId:_.current,expectedTotal:totalCents,paymentMethod');
   replace('if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);',
     'if(t.status===409){syncOffersClock(n.pricingTime);c([]);u(``);_.current=crypto.randomUUID()}if(!t.ok||!n.url)throw Error(n.error||`Unable to start checkout.`);');
-  replace('(0,j.jsx)(sr,{})]})}', '(0,j.jsx)(StoreSignup,{}),(0,j.jsx)(sr,{})]})}');
+  replace('(0,j.jsx)(sr,{})]})}', 'window.location.pathname==="/" && j.jsx("div",{dangerouslySetInnerHTML:{__html:' + json(fundraiserSection) + '}}),(0,j.jsx)(StoreSignup,{}),(0,j.jsx)(sr,{})]})}');
   replace('children:`Shipping and order help`})', 'children:`Shipping and order help`}),(0,j.jsx)(`a`,{href:`/#join-the-herd`,children:`Join the Herd`})');
   const oldReleaseStart = js.indexOf('function Dr(){');
   const oldReleaseEnd = js.indexOf('function Or(){', oldReleaseStart);
@@ -145,7 +151,7 @@ export function createPages(data, {preview = false} = {}) {
   }
   const artistLinks = data.artists.map(a => `<article><h2><a href="/artists/${a.slug}">${escape(a.name)}</a></h2><p>${escape(a.genre || '')} · ${escape(a.hometown)}</p></article>`).join('');
   const releases = data.releases.map(r => `<article><h2>${releaseLink(r)}</h2><p>${escape(data.artists.find(a=>a.slug===r.artistSlug).name)} · ${escape(r.type)} · ${escape(r.releaseDate)}</p><p>${escape(r.description)}</p>${formatLinks(r,data)}</article>`).join('');
-  add('/', 'Independent music and artists', 'Discover independent artists, albums, EPs and singles from Iron Tusk Records, an independent record label based in Hamilton, Ohio.', '<h2>Thomas Ate the Cat</h2><p>Alternative rock from Michigan.</p><a href="/artists/thomas-ate-the-cat">Explore Thomas Ate the Cat</a><h2>Featured Artists</h2>' + artistLinks);
+  add('/', 'Independent music and artists', 'Discover independent artists, albums, EPs and singles from Iron Tusk Records, an independent record label based in Hamilton, Ohio.', '<h2>Thomas Ate the Cat</h2><p>Alternative rock from Michigan.</p><a href="/artists/thomas-ate-the-cat">Explore Thomas Ate the Cat</a><h2>Featured Artists</h2>' + artistLinks + fundraiserSection);
   const signupPath = '/join-the-herd';
   const signupEmbed = 'https://528cb4e6.sibforms.com/v2/serve/MUIFAEZBBEDUPef4tXiGVK7JLIcdnnlMcSJQ0-pf46RWp9y8X9aKEb_k71uUr9GA-af8UGVBIpgNnaxSXh5Aq8m3OnPZV3Cj-Sq-UVh5kQpDG-4djt0NnX2-0kxh3Z73o7S2tOs6dvNERsMb5wg2nOyC_zUdeuAjf0zclLbvj8y14G-zgUAt8gzVEEhIdQUJ3lOG5z-sIsWUJUniNw==';
   const signupLink = signupEmbed.replace('/v2/serve/', '/serve/');
@@ -247,3 +253,4 @@ export function improveStorefront() {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) improveStorefront();
+
